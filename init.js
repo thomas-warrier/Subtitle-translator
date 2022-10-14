@@ -6,6 +6,7 @@
         btn.type = "submit";
         document.querySelector("div.ltr-1jnlk6v").prepend(btn); //the query selector select the div where all of the right bottom button are
         //the prepend add the button before the childs example: parent.prepend(newChild)  will be [newChild, child1, child2]
+        console.log("hello there")
     }
     function defineTranslateButtonEvents() {
         document.getElementById("translate-btn")
@@ -28,7 +29,9 @@
         return subtitlesTab
     };
 
-    AddButtons();
+    
+      
+    
     defineTranslateButtonEvents();
 })();
 
