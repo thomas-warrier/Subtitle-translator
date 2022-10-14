@@ -1,6 +1,16 @@
 #translate-btn{
-    background-image: url(https://drive.google.com/file/d/1UqScUtitSszBnahM2pHX4H2XSYg81t8Q/view);
+    background-image: url(https://cdn.discordapp.com/attachments/885562717463785582/1030621992321286224/Vector5.svg);
     background-size: cover;
-    width: 30px;
-    height: 30px;
+    background-color: transparent;
+    width: 29px;
+    height: 29px;
+    
+}
+#translate-btn:hover{
+    width: 34px;
+    height: 34px;
+    transition: 0.30s;
+    translate: (-3px,-3px) ;
+    
+    
 }
