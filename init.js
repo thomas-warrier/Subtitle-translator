@@ -1,5 +1,5 @@
 (function (){
-    function AddButtons() {
+    function addButtons() {
         var btn = document.createElement("input");
         btn.value = "Translate Subtitles";
         btn.id = "translate-btn";
@@ -29,8 +29,56 @@
         return subtitlesTab
     };
 
+    addEventListener('mousemove',(event)=>{
+
+    })
+    addEventListener('mouseup', (event) => {
+        if(event.button==0){
+            addButtons()
+        }
+    });  
+    addEventListener('keypress', (event) => {
+        addButtons()
+    });
+
+    function waitForElm(selector) {
+        return new Promise(resolve => {
+            if (document.querySelector(selector)) {
+                return resolve(document.querySelector(selector));
+            }
     
-      
+            const observer = new MutationObserver(mutations => {
+                if (document.querySelector(selector)) {
+                    resolve(document.querySelector(selector));
+                    observer.disconnect();
+                }
+            });
+    
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    }
+    waitForElm(".ltr-omkt8s").then((elm) => {
+        console.log('Element is ready');
+        console.log(elm.textContent);
+        var selector = document.querySelector(".ltr-omkt8s")
+        function callback(mutationsList, observer) {
+            console.log('Mutations:', mutationsList)
+            console.log('Observer:', observer)
+            mutationsList.forEach(mutation => {
+                if (mutation.attributeName === 'class') {
+                    console.log('Ch-ch-ch-changes!')
+                }
+            })
+        }
+        
+        const mutationObserver = new MutationObserver(callback)
+        
+        mutationObserver.observe(selector, { attributes: true })
+    });
+    
     
     defineTranslateButtonEvents();
 })();
