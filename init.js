@@ -1,7 +1,7 @@
 (function () {
     function addButtons() {
         var btn = document.createElement("input");
-        btn.value="";
+        btn.value = "";
         btn.id = "translate-btn";
         btn.type = "submit";
         waitForElm(".ltr-1jnlk6v").then((elm) => {
@@ -9,6 +9,7 @@
             //the prepend add the button before the childs example: parent.prepend(newChild)  will be [newChild, child1, child2]
         });
     }
+
     function defineTranslateButtonEvents() {
         document.getElementById("translate-btn")
         addEventListener("click", function
@@ -18,7 +19,21 @@
     }
 
     function createPopUp() {
+        var popUp = document.createElement("div");
+        popUp.id = "PopUpTranslate"
+        popUp.innerHTML =
+            <div>
+                <div id="languages-container">
+                    <div id="from-languages">Langue détecter</div><div id="to-languages">Francais</div>
+                </div>
+                <div id="from-subtitles">
+                    <p>${getSubtitles()}</p>
+                </div>
+                <div id="translated-subtitles">
+                    <p></p>
+                </div>
 
+            </div>
     }
 
     function getSubtitles() {
@@ -27,8 +42,12 @@
         for (let i = 0; i < getChildren.length; i++) {
             subtitlesTab.push(getChildren[i].textContent)
         }
-        return subtitlesTab
-    };
+        var stringSubtitles ="";
+        subtitlesTab.forEach(element => {
+                stringSubtitles+=element+'\n'
+        })
+        return stringSubtitles;
+    }
 
 
     function waitForElm(selector) {
