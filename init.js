@@ -4,14 +4,18 @@
         btn.value = "";
         btn.id = "translate-btn";
         btn.type = "submit";
-        btn.onmouseout = function(event) {
-            /* event.target: parent element */
-            
-          };
-        btn.onmouseover = function(event) {
+        btn.onmouseout = function (event) {
+            const elements = document.getElementsByClassName("container-translation-ext");
+            while (elements.length > 0) {
+                elements[0].parentNode.removeChild(elements[0]);
+            }
+            console.log("dehors")
+        };
+        btn.onmouseover = function (event) {
             createPopUp()
-          };
-        
+            console.log("dedans")
+        };
+
         waitForElm(".ltr-1jnlk6v").then((elm) => {
             document.querySelectorAll(".ltr-1jnlk6v")[6].prepend(btn); //the query selector select the div where all of the right bottom button are
             //the prepend add the button before the childs example: parent.prepend(newChild)  will be [newChild, child1, child2]
@@ -19,31 +23,27 @@
     }
 
     function defineTranslateButtonEvents() {
-        document.getElementById("translate-btn").addEventListener("click", function
-            (event) {
-            createPopUp();
-        });
-        document.getElementById("translate-btn").addEventListener("mouseover",function(event){
-            createPopUp();
-        })
+          
     }
 
     function createPopUp() {
         var popUp = document.createElement("div");
         popUp.id = "PopUpTranslate"
         popUp.innerHTML =
-            <div>
-                <div id="languages-container">
-                    <div id="from-languages">Langue détectée</div><div id="to-languages">Francais</div>
-                </div>
-                <div id="from-subtitles">
-                    <p>${getSubtitles()}</p>
-                </div>
-                <div id="translated-subtitles">
-                    <p></p>
-                </div>
+            "<div class='container-translation-ext'>"
+        "<div id='languages-container'>"
+        "<div id='from-languages'>Langue détectée</div><div id='to-languages'>Francais</div></div>"
+        "<div id='from-subtitles'>"
+        "<p>" + getSubtitles() + "</p>"
+        "</div>"
+        "<div id='translated-subtitles'>"
+        "<p>" + translateText(null,null,null) + "</p>"
+        "</div>"
+        "</div>"
+    }
 
-            </div>
+    function translateText(subtitles,fromLanguage,toLanguage) {
+        
     }
 
     function getSubtitles() {
@@ -52,10 +52,7 @@
         for (let i = 0; i < getChildren.length; i++) {
             subtitlesTab.push(getChildren[i].textContent)
         }
-        var stringSubtitles ="";
-        subtitlesTab.forEach(element => {
-                stringSubtitles+=element+'\n'
-        })
+        let stringSubtitles = subtitlesTab.join('\n')
         return stringSubtitles;
     }
 

@@ -15,6 +15,10 @@
     translate: (-5px,-5px) ;
 }
 
+.container-translation-ext{
+    display: flex;
+    flex-direction: column;
+}
 #languages-container{
     height: 100px;
     width: 300px;
@@ -27,4 +31,17 @@
     font-family: Arial, Helvetica, sans-serif ;
     font-size: larger;
     
+}
+
+#translate-btn .container-translation-ext{
+    position: absolute;
+    top: 100%;
+    width: 150px;
+    height: 100px;
+    transition: opacity 500ms;
+}
+
+#translate-btn:hover .container-translation-ext{
+    visibility: visible;
+    opacity: 1;
 }
