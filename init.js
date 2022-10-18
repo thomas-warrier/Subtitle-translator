@@ -4,6 +4,14 @@
         btn.value = "";
         btn.id = "translate-btn";
         btn.type = "submit";
+        btn.onmouseout = function(event) {
+            /* event.target: parent element */
+            
+          };
+        btn.onmouseover = function(event) {
+            createPopUp()
+          };
+        
         waitForElm(".ltr-1jnlk6v").then((elm) => {
             document.querySelectorAll(".ltr-1jnlk6v")[6].prepend(btn); //the query selector select the div where all of the right bottom button are
             //the prepend add the button before the childs example: parent.prepend(newChild)  will be [newChild, child1, child2]
@@ -11,11 +19,13 @@
     }
 
     function defineTranslateButtonEvents() {
-        document.getElementById("translate-btn")
-        addEventListener("click", function
+        document.getElementById("translate-btn").addEventListener("click", function
             (event) {
             createPopUp();
         });
+        document.getElementById("translate-btn").addEventListener("mouseover",function(event){
+            createPopUp();
+        })
     }
 
     function createPopUp() {
@@ -24,7 +34,7 @@
         popUp.innerHTML =
             <div>
                 <div id="languages-container">
-                    <div id="from-languages">Langue détecter</div><div id="to-languages">Francais</div>
+                    <div id="from-languages">Langue détectée</div><div id="to-languages">Francais</div>
                 </div>
                 <div id="from-subtitles">
                     <p>${getSubtitles()}</p>
