@@ -6,7 +6,7 @@
     "content_scripts" : [
         {
             "js" : ["init.js"],
-            "css" : ["styleButton.css"],
+            "css" : ["styleButton.css","stylePopUp.css"],
             "matches" : ["*://www.netflix.com/watch/*"]
         }
     ]
