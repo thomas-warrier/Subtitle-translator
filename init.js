@@ -1,4 +1,7 @@
-(function () {
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
+(
+    function () {
     function addButtons() {
         var btn = document.createElement("input");
         btn.value = "";
@@ -9,11 +12,9 @@
             while (elements.length > 0) {
                 elements[0].parentNode.removeChild(elements[0]);
             }
-            console.log("dehors")
         };
         btn.onmouseover = function (event) {
             createPopUp()
-            console.log("dedans")
         };
 
         waitForElm(".ltr-1jnlk6v").then((elm) => {
@@ -26,35 +27,43 @@
           
     }
 
+   
+
     function createPopUp() {
         var popUp = document.createElement("div");
         popUp.id = "PopUpTranslate"
-        popUp.innerHTML =
-            "<div class='container-translation-ext'>"
-        "<div id='languages-container'>"
-        "<div id='from-languages'>Langue détectée</div><div id='to-languages'>Francais</div></div>"
-        "<div id='from-subtitles'>"
-        "<p>" + getSubtitles() + "</p>"
-        "</div>"
-        "<div id='translated-subtitles'>"
-        "<p>" + translateText(null,null,null) + "</p>"
-        "</div>"
-        "</div>"
+        popUp.innerHTML ="<div class='container-translation-ext'><div id='languages-container'><div id='from-languages'>Langue détectée</div><div id='to-languages'>Francais</div></div><div id='from-subtitles'><span>" + getSubtitles() + "</span></div><div id='translated-subtitles'><span>" + translateText(getSubtitles(),null,"FR") + "</span></div></div>"
+        
+        console.log(popUp.innerHTML)
+        console.log("PopUp created")
     }
 
     function translateText(subtitles,fromLanguage,toLanguage) {
-        
+        let apiUrl = `https://api.mymemory.translated.net/get?q=${subtitles}&langpair=${fromLanguage}|${toLanguage}&de=twarrier69@gmail.com`;
+        // fetching api response and returning it with parsing into js obj
+        // and in another then method receiving that obj
+        fetch(apiUrl).then(res => res.json()).then(data =>{
+            console. log (data);
+        });
+
     }
 
     function getSubtitles() {
-        let getChildren = document.querySelector("div.player-timedtext-text-container > span").children
-        var subtitlesTab = [];
-        for (let i = 0; i < getChildren.length; i++) {
-            subtitlesTab.push(getChildren[i].textContent)
+        var childrenExist = document.querySelector("div.player-timedtext-text-container > span");
+        if (childrenExist !== null) {
+            let getChildren = document.querySelector("div.player-timedtext-text-container > span").children
+                var subtitlesTab = [];
+                for (let i = 0; i < getChildren.length; i++) {
+                    subtitlesTab.push(getChildren[i].textContent)
+                }
+                let stringSubtitles = subtitlesTab.join('\n')
+                return stringSubtitles;
+        } else {
+            console.log("there is no subtitle available")
         }
-        let stringSubtitles = subtitlesTab.join('\n')
-        return stringSubtitles;
     }
+
+    x
 
 
     function waitForElm(selector) {
