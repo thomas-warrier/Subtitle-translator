@@ -1,3 +1,11 @@
+#PopUpTranslate{
+    position: relative;
+    right: 30px;
+    bottom: 0px;
+    width: fit-content;
+    height: fit-content;
+}
+
 .container-translation-ext{
     display: flex;
     flex-direction: column;
