@@ -3,7 +3,9 @@
 
         
         //dernier sous titre
+        var translated = false;
         var lastSub = null;
+        var lastSubTranslated = null;
 
         function addButtons() {
             var btn = document.createElement("input");
@@ -17,7 +19,7 @@
                 }
             };
             btn.onmouseover = function (event) {
-                createPopUp()
+                createPopUp();
             };
 
             waitForElm(".ltr-1jnlk6v").then((elm) => {
@@ -26,15 +28,12 @@
             });
         }
 
-        function defineTranslateButtonEvents() {
-
-        }
 
         function createPopUp() {
             const sub = getSubtitles();
             if (sub) {
                 //TODO Manage lang preferences
-                const transleted = translateText(sub,'EN','FR',(translate)=>{
+                translateText(sub,'EN','FR',(translate)=>{
                     const popUp = document.createElement("div");
                     popUp.id = "PopUpTranslate"
                     
@@ -49,8 +48,13 @@
                         <div id='translated-subtitles'><span>"${decodeURIComponent(translate)}"</span></div>
                     </div>
                     `
-                    console.log(popUp.innerHTML); 
-                    console.log("PopUp created");
+                    //ajout dans le canva
+                    const canva = document.querySelector('div.ltr-1212o1j');
+                    if(canva){
+                        canva.appendChild(popUp);
+                    }else{
+                        console.log('Video non trouvée !');
+                    }                    
                 });
             }
             //aucun sous-titres
@@ -59,16 +63,23 @@
         //wesh cum master
         //un agent crous te regarde
         function translateText(subtitles, fromLanguage, toLanguage, callback) {
-            let apiUrl = `https://api.mymemory.translated.net/get?q=${subtitles}&langpair=${fromLanguage}|${toLanguage}&de=twarrier69@gmail.com`;
-            fetch(apiUrl).then(res => res.json()).then(data => {
-                //si la requete est valide par le crous manager
-                if(data.responseStatus == 200){
-                    callback(data.responseData.translatedText);
-                    return;
-                }
-                //pas besoin de rappeler le callback, aucun element sera afficher dans ce cas
-                console.log('Erreur durant la requete : ',data.responseStatus);
-            });
+            //ici faire une condition if translate = true alors pas faire ca ?
+            if(!translated){
+                let apiUrl = `https://api.mymemory.translated.net/get?q=${subtitles}&langpair=${fromLanguage}|${toLanguage}&de=twarrier69@gmail.com`;
+                fetch(apiUrl).then(res => res.json()).then(data => {
+                    //si la requete est valide par le crous manager
+                    if(data.responseStatus == 200){
+                        translated = true;
+                        lastSubTranslated = data.responseData.translatedText;
+                        console.log('Traduction : ',lastSubTranslated);
+                        callback(lastSubTranslated);
+                        return;
+                    }
+                    //pas besoin de rappeler le callback, aucun element sera afficher dans ce cas
+                    console.log('Erreur durant la requete : ',data.responseStatus);
+                });
+            }
+            callback(lastSubTranslated);
         }
 
 
@@ -81,10 +92,13 @@
                 for (let i = 0; i < getChildren.length; i++) {
                     subtitlesTab.push(getChildren[i].textContent);
                 }
-                lastSub = subtitlesTab.join(" ");
+                if(lastSub != subtitlesTab.join(" ")){
+                    translated = false;
+                    lastSub = subtitlesTab.join(" ");
+                }
                 return lastSub;
             }
-            console.log("there is no subtitle available");
+            // console.log("there is no subtitle available");
             return lastSub; 
         }
 
@@ -126,7 +140,4 @@
 
             mutationObserver.observe(selector, { attributes: true })
         });
-
-
-        defineTranslateButtonEvents();
     })();

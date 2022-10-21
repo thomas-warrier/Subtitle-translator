@@ -1,9 +1,13 @@
 #PopUpTranslate{
-    position: relative;
-    right: 30px;
-    bottom: 0px;
+    font-size: 1.5rem;
+    border-radius: 15%;
+    background-color: rgba(0, 0, 0, 0.800);
+    position: absolute;
+    right: 100px;
+    bottom: 150px;
     width: fit-content;
     height: fit-content;
+    z-index: 100;
 }
 
 .container-translation-ext{
