@@ -13,13 +13,17 @@
             btn.id = "translate-btn";
             btn.type = "submit";
             btn.onmouseout = function (event) {
+                
                 const elements = document.getElementsByClassName("PopUpTranslate-Class");
                 while (elements.length > 0) {
                     elements[0].parentNode.removeChild(elements[0]);
                 }
+                document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility="visible";
             };
             btn.onmouseover = function (event) {
+                document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility="hidden";
                 createPopUp();
+                
             };
 
             waitForElm(".ltr-1jnlk6v").then((elm) => {
