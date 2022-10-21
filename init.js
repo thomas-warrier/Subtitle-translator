@@ -13,7 +13,7 @@
             btn.id = "translate-btn";
             btn.type = "submit";
             btn.onmouseout = function (event) {
-                const elements = document.getElementsByClassName("container-translation-ext");
+                const elements = document.getElementsByClassName("PopUpTranslate-Class");
                 while (elements.length > 0) {
                     elements[0].parentNode.removeChild(elements[0]);
                 }
@@ -36,16 +36,20 @@
                 translateText(sub,'EN','FR',(translate)=>{
                     const popUp = document.createElement("div");
                     popUp.id = "PopUpTranslate"
+                    popUp.className = "PopUpTranslate-Class"
                     
                     //TODO Afficher la langue de sous titrage actuelle
                     popUp.innerHTML = `
                     <div class='container-translation-ext'>
                         <div id='languages-container'>
-                            <div id='from-languages'>"Langue détectée</div>
+                            <div id='from-languages'>Langue détectée</div>
                             <div id='to-languages'>Francais</div>
+                            <div id='parameter'></div>
                         </div>
-                        <div id='from-subtitles'><span>"${lastSub}"</span></div>
-                        <div id='translated-subtitles'><span>"${decodeURIComponent(translate)}"</span></div>
+                    <div id='traduction-container'>
+                        <div id='from-subtitles'><span>${lastSub}</span></div>
+                        <div id='translated-subtitles'><span>${decodeURIComponent(translate)}</span></div>
+                    </div>
                     </div>
                     `
                     //ajout dans le canva
