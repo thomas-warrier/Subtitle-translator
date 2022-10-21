@@ -3,8 +3,8 @@
     font-size: 1.5rem;
     border-radius: 15%;
     position: absolute;
-    right: 250px;
-    bottom: 95px;
+    right: 100px;
+    bottom: 150px;
     width: fit-content;
     height: fit-content;
     z-index: 100;
@@ -50,13 +50,27 @@
     padding: 15px;
     flex: 1;
 }
-
+.language-and-parameter{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
 #from-subtitles,#from-languages{
     margin-right: 20px;
 }
 
+.parameter-icon-to-context{
+    border-radius: 3px;
+    padding: 3px;
+}
+.parameter-icon-to-context span.icon {
+    background: url(https://cdn.discordapp.com/attachments/840647610247282749/1033132957961048094/carbon_settings.svg) no-repeat;
+    float: left;
+    width: 30px;
+    height: 30px;
+    align-items: flex-end;
+}
 
-
-
-
-	  
+.parameter-icon-to-context:hover {
+    background-color: #131313;
+}

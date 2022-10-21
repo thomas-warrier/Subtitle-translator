@@ -43,13 +43,15 @@
                     <div class='container-translation-ext'>
                         <div id='languages-container'>
                             <div id='from-languages'>Langue détectée</div>
-                            <div id='to-languages'>Francais</div>
-                            <div id='parameter'></div>
+                            <div class="language-and-parameter">
+                                <div id='to-languages'>Francais</div>
+                                <div class='parameter-icon-to-context'><span class="icon"></span><a href="#"></a><span></span></div></div>
+                            </div>
                         </div>
-                    <div id='traduction-container'>
-                        <div id='from-subtitles'><span>${lastSub}</span></div>
-                        <div id='translated-subtitles'><span>${decodeURIComponent(translate)}</span></div>
-                    </div>
+                        <div id='traduction-container'>
+                            <div id='from-subtitles'><span>${lastSub}</span></div>
+                            <div id='translated-subtitles'><span>${decodeURIComponent(translate)}</span></div>
+                        </div>  
                     </div>
                     `
                     //ajout dans le canva
