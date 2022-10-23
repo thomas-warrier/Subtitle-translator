@@ -1,0 +1,40 @@
+#PopUpNoSubError{
+    font-size: 1.5rem;
+    border-radius: 15%;
+    position: absolute;
+    right: 30px;
+    bottom: 95px;
+    min-width: 500px;
+    max-width: 500px;
+    height: fit-content;
+    z-index: 100;
+}
+#error-translation-container{
+    display: flex;
+    flex-direction: column;
+}
+#top-container{
+    background-color : #262626;
+    padding: 15px;
+    min-height: 28px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+#bottom-container{
+        justify-content: center;
+        background-color: #131313;
+        min-height: 120px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 15px;
+        color: white;
+        font-family: Helvetica, sans-serif;
+        font-size: 18.9px;
+}
+#top-container{
+        color: white;
+        font-family: Helvetica, sans-serif ;
+        font-weight: bold;
+        font-size: 27px;
+}
+

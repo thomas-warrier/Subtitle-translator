@@ -1,14 +1,21 @@
 {
-    "name" : "Subtitle translator for Netflix,Amazon Prime,Disney Plus,Youtube",
-    "version" : "0.0.1",
-    "manifest_version" : 3,
-    "description" : "description of extension",
-    "content_scripts" : [
+    "name": "Subtitle translator for Netflix,Amazon Prime,Disney Plus,Youtube",
+    "version": "0.0.1",
+    "manifest_version": 3,
+    "description": "description of extension",
+    "content_scripts": [
         {
-            "js" : ["init.js"],
-            "css" : ["styleButton.css","stylePopUp.css"],
-            "matches" : ["*://www.netflix.com/watch/*"]
+            "js": [
+                "init.js"
+            ],
+            "css": [
+                "styleButton.css",
+                "stylePopUp.css",
+                "styleErrorPopUp.css"
+            ],
+            "matches": [
+                "*://www.netflix.com/watch/*"
+            ]
         }
     ]
-
 }

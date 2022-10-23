@@ -6,6 +6,9 @@
         var translated = false;
         var lastSub = null;
         var lastSubTranslated = null;
+        var popUpHover=false;
+        var errorMessage="Aucun sous-titre disponible pour le moment";
+
 
 
         function addButtons() {
@@ -14,19 +17,12 @@
             btn.id = "translate-btn";
             btn.type = "submit";
             btn.onmouseout = function (event) {
-                setTimeout(()=>{
-                    const elements = document.getElementsByClassName("PopUpTranslate-Class");
-                while (elements.length > 0) {
-                    elements[0].parentNode.removeChild(elements[0]);
-                }
-                document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility="visible";
-                },400);
-                
+                    deletePopUp();
             };
             btn.onmouseover = function (event) {
                 document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility="hidden";
                 createPopUp();
-                
+
             };
 
             waitForElm(".ltr-1jnlk6v").then((elm) => {
@@ -35,6 +31,18 @@
             });
         }
 
+        function deletePopUp(){
+                    setTimeout(()=>{
+                        if(popUpHover==false){
+                            const elements = document.getElementsByClassName("PopUpTranslate-Class");
+                            while (elements.length > 0) {
+                                elements[0].parentNode.removeChild(elements[0]);
+                            }
+                            document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility="visible";
+                        }
+                        
+                    },400);
+        }
 
         function createPopUp() {
             const sub = getSubtitles();
@@ -62,19 +70,40 @@
                     </div>
                     `
                     //ajout dans le canva
-                    const canva = document.querySelector('div.ltr-1212o1j');
-                    if(canva){
-                        canva.appendChild(popUp);
-                    }else{
-                        console.log('Video non trouvée !');
-                    }                    
+                    placeInCanva(popUp);                 
                 });
             }
             //aucun sous-titres
+            else{
+                console.log("Error Pop Up")
+                const popUpNoSub=document.createElement("div");
+                popUpNoSub.id="PopUpNoSubError"
+                popUpNoSub.className="PopUpNoSubErrorClass"
+                popUpNoSub.innerHTML=`
+                <div id='error-translation-container'>
+                    <div id='top-container'>
+                        Aucun Sous-Titres
+                    </div>
+                    <div id='bottom-container'>
+                        <div id='no-subtitles'>
+                            <span>${errorMessage}</span>
+                        </div>
+                    </div>
+                </div>
+                `
+                placeInCanva(popUpNoSub);
+            }
         }
 
-        //wesh cum master
-        //un agent crous te regarde
+        function placeInCanva(popUp){
+            const canva = document.querySelector('div.ltr-1212o1j');
+            if(canva){
+                canva.appendChild(popUp);
+            }else{
+                console.log('Video non trouvée !');
+            }   
+        }
+
         function translateText(subtitles, fromLanguage, toLanguage, callback) {
             //ici faire une condition if translate = true alors pas faire ca ?
             if(!translated){
