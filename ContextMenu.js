@@ -1,7 +1,6 @@
 var contextMenu = {
     "id" : "parameter-menu",
     "title" : "Parameter Menu",
-    "contexts" : 
 
 }
 /*
