@@ -32,16 +32,25 @@
         }
 
         function deletePopUp(){
-                    setTimeout(()=>{
-                        if(popUpHover==false){
-                            const elements = document.getElementsByClassName("PopUpTranslate-Class");
-                            while (elements.length > 0) {
-                                elements[0].parentNode.removeChild(elements[0]);
-                            }
-                            document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility="visible";
-                        }
-                        
-                    },400);
+            if(lastSub==null){
+                setTimeout(()=>{
+                    const elements = document.getElementsByClassName("PopUpNoSubErrorClass");
+                    while (elements.length > 0) {
+                        elements[0].parentNode.removeChild(elements[0]);
+                    }
+                    document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility="visible";
+                },400);
+            }
+            else{
+                setTimeout(()=>{
+                    const elements = document.getElementsByClassName("PopUpTranslate-Class");
+                    while (elements.length > 0) {
+                        elements[0].parentNode.removeChild(elements[0]);
+                    }
+                    document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility="visible";
+                },400);
+            }
+                    
         }
 
         function createPopUp() {
