@@ -7,18 +7,21 @@
         var lastSub = null;
         var lastSubTranslated = null;
 
+
         function addButtons() {
             var btn = document.createElement("input");
             btn.value = "";
             btn.id = "translate-btn";
             btn.type = "submit";
             btn.onmouseout = function (event) {
-                
-                const elements = document.getElementsByClassName("PopUpTranslate-Class");
+                setTimeout(()=>{
+                    const elements = document.getElementsByClassName("PopUpTranslate-Class");
                 while (elements.length > 0) {
                     elements[0].parentNode.removeChild(elements[0]);
                 }
                 document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility="visible";
+                },400);
+                
             };
             btn.onmouseover = function (event) {
                 document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility="hidden";
