@@ -6,7 +6,7 @@
         var translated = false;
         var lastSub = null;
         var lastSubTranslated = null;
-        var errorMessage = "Aucun sous-titre disponible pour le moment";
+        
 
 
 
@@ -65,7 +65,7 @@
                     popUp.innerHTML = `
                     <div class='container-translation-ext'>
                         <div id='languages-container'>
-                            <div id='from-languages'>Langue détectée</div>
+                            <div id='from-languages'><span lang='fr'>Langue détectée</span><span lang='en'>Detected language</span></div>
                             <div class="language-and-parameter">
                                 <div id='to-languages'>Francais</div>
                                 <div class='parameter-icon-to-context'><span class="icon"></span><a href="#"></a><span></span></div></div>
@@ -90,11 +90,13 @@
                 popUpNoSub.innerHTML = `
                 <div id='error-translation-container'>
                     <div id='top-container'>
-                        Aucun Sous-Titres
+                        <span lang='fr'>Aucun Sous-Titres</span>
+                        <span lang='en'>No subtitles available</span>
                     </div>
                     <div id='bottom-container'>
                         <div id='no-subtitles'>
-                            <span>${errorMessage}</span>
+                            <span lang='fr'>Aucun sous-titre disponible pour le moment</span>
+                            <span lang='en'>No subtitles available for now,please wait for the first subtitles</span>
                         </div>
                     </div>
                 </div>
@@ -191,6 +193,37 @@
             mutationObserver.observe(selector, { attributes: true })
         });
 
+        function createpopUpSettings() {
+            const popUpSettings = document.createElement("div");
+                    popUpSettings.id = "PopUpSetting"
+                    popUpSettings.className = "PopUpSetting-Class"
+                    
+                    //TODO Afficher la langue de sous titrage actuelle
+                    popUpSettings.innerHTML = `
+                    <div class='container-setting-ext'>
+                        <div id='title-container'>
+                            <h1>Paramètre<h1>
+                        </div>
+                        <div id='setting-container'>
+                            <div id='from-subtitles-languages'>
+                                <h2>Langages sources</h2>
+                                ${availableLanguages()}
+                            </div>
+                            <div id='to-subtitles-languages'>
+                                <h2>Langages cible</h2>
+                                ${availableLanguages()}
+                            </div>
+                        </div>  
+                        <div id='extension-languages'>
+                                <h2>Langue de l'extension</h2>
+                                
+                        </div>
+                    </div>
+                    `
+                    //ajout dans le canva
+                    placeInCanva(popUpSettings); 
+        }
+        
         function getLanguagesOption(lang, langExtension) {
 
             var select = document.createElement("select");
