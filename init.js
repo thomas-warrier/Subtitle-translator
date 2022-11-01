@@ -1,21 +1,20 @@
 (
     function () {
 
-        //dernier sous titre
-        var translated = false;
-        var lastSub = null;
-        var lastSubTranslated = null;
-        var deleteTimeout = null;
-        
-        function addButtons() {
+        var translated = false; //true if subtitles of the popUp have been translated,false otherwise
+        var lastSub = null; //contain the last subtitles of the series
+        var lastSubTranslated = null; //contain the last subtitles translated of var lastSub
+        var deleteTimeout = null; //contain the timer of the popUp
+
+        function addButtons() { //to add the button to the netflix bar
             var btn = document.createElement("input");
             btn.value = "";
             btn.id = "translate-btn";
             btn.type = "submit";
-            btn.addEventListener('mouseenter',(e)=>{
+            btn.addEventListener('mouseenter', (e) => {
                 createPopUp();
             });
-            btn.addEventListener('mouseleave',()=>{
+            btn.addEventListener('mouseleave', () => {
                 deletePopUp();
             })
             waitForElm(".ltr-1jnlk6v").then((elm) => {
@@ -25,7 +24,7 @@
         }
 
         function deletePopUp() {
-            if (lastSub != null) {
+            if (lastSub != null) { //if subtitle are not null you will have to delete a translate popUp after 400ms
                 deleteTimeout = setTimeout(() => {
                     document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "visible"; //to set visible the red bar timer
                     const popUpError = document.getElementById("PopUpTranslate");
@@ -34,20 +33,21 @@
                     console.log('Ben said no');
                 }, 400);
             }
-            else {
+            else { //else you will have to delete an error popUp after 400ms
                 deleteTimeout = setTimeout(() => {
-                    document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "visible"; 
+                    document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "visible";
                     const popUpSubtitle = document.getElementById("PopUpNoSubError");
                     popUpSubtitle.remove();
                     deleteTimeout = null;
                     console.log('Ben said no');
                 }, 400);
             }
-            
+
         }
 
         function createPopUp() {
-            if(!document.getElementById('PopUpTranslate') && !document.getElementById('PopUpNoSubError')){  
+            //if there is no popUp of translate and no popUp of error then you can create a popUp
+            if (!document.getElementById('PopUpTranslate') && !document.getElementById('PopUpNoSubError')) {
                 const sub = getSubtitles();
                 document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "hidden"; //to hide the red bar
                 if (sub) {
@@ -55,11 +55,11 @@
                     translateText(sub, 'EN', 'FR', (translate) => {
 
                         if (!document.getElementById('PopUpTranslate')) {
-                            
+
                             const popUp = document.createElement("div");
                             popUp.id = "PopUpTranslate"
                             popUp.className = "PopUpTranslate-Class"
-    
+
                             //TODO Afficher la langue de sous titrage actuelle
                             popUp.innerHTML = `
                             <div class='container-translation-ext'>
@@ -76,25 +76,25 @@
                                 </div>
                             </div>
                             `
-                            popUp.addEventListener('mouseenter',(e)=>{
+                            popUp.addEventListener('mouseenter', (e) => {
                                 console.log("ben")
-                                if(deleteTimeout){
+                                if (deleteTimeout) {
                                     clearTimeout(deleteTimeout);
                                 }
                             });
-    
-                            popUp.addEventListener('mouseleave',(e)=>{
+
+                            popUp.addEventListener('mouseleave', (e) => {
                                 deletePopUp();
                             })
-                        
+
                             //ajout dans le canva
                             placeInCanva(popUp);
                         }
-                        
+
                     });
                 }
-                //aucun sous-titres
-                else {
+                //mean there is no subtitles to display
+                else {//create a popUp of error
                     console.log("Error Pop Up")
                     const popUpNoSub = document.createElement("div");
                     popUpNoSub.id = "PopUpNoSubError"
@@ -113,15 +113,13 @@
                         </div>
                     </div>
                     `
-                    popUpNoSub.addEventListener('mouseenter',(e)=>{
-
-                        if(deleteTimeout){
+                    popUpNoSub.addEventListener('mouseenter', (e) => { //when mouse enter in popup delete timeout of normal delete
+                        if (deleteTimeout) {
                             clearTimeout(deleteTimeout);
                         }
                     });
 
-                    popUpNoSub.addEventListener('mouseleave',(e)=>{
-                        
+                    popUpNoSub.addEventListener('mouseleave', (e) => {//when mouse leave the popUp delete the popUp
                         deletePopUp();
                     })
                     placeInCanva(popUpNoSub);
@@ -129,12 +127,14 @@
             }
         }
 
-        function placeInCanva(popUp) {
+        
+
+        function placeInCanva(popUp) { //to place something in the canva
             // const canva = document.querySelector('div.ltr-1212o1j');
-            const canva = document.querySelector('.ltr-omkt8s');
+            const canva = document.querySelector('.ltr-omkt8s'); //select the canva
             if (canva) {
                 canva.appendChild(popUp);
-                
+
             } else {
                 console.log('Video non trouvée !');
             }
@@ -163,21 +163,20 @@
 
 
         function getSubtitles() {
-            var childrenExist = document.querySelector("div.player-timedtext-text-container > span");
-            if (childrenExist !== null) {
-                let getChildren = document.querySelector("div.player-timedtext-text-container > span").children;
+            var childrenExist = document.querySelector("div.player-timedtext-text-container > span"); //select the span where subtitles are contain (return null if there is no subtitles)
+            if (childrenExist !== null) {//if a subtitle exist
+                let getChildren = document.querySelector("div.player-timedtext-text-container > span").children; //get all the different subtitles
                 var subtitlesTab = [];
-                for (let i = 0; i < getChildren.length; i++) {
+                for (let i = 0; i < getChildren.length; i++) { //for each subtitles get their content and put it inside the array
                     subtitlesTab.push(getChildren[i].textContent);
                 }
-                if (lastSub != subtitlesTab.join(" ")) {
-                    translated = false;
-                    lastSub = subtitlesTab.join(" ");
+                if (lastSub != subtitlesTab.join(" ")) { //if the string of the new subtitles is different from the older subtitles 
+                    translated = false; //then they are subtitles which have not been translated
+                    lastSub = subtitlesTab.join(" "); //they became the new "lastsubtitles"
                 }
                 return lastSub;
             }
-            // console.log("there is no subtitle available");
-            return lastSub;
+            return lastSub; //there is no new subtitles so we return the last subtitles
         }
 
 
@@ -202,18 +201,15 @@
         }
 
 
-        
-        waitForElm(".ltr-omkt8s").then((elm) => {
-            console.log('Player is ready');
-            elm.addEventListener('mousemove',(e)=>{
 
-            })
-            addButtons()
+        waitForElm(".ltr-omkt8s").then((elm) => { //we wait till the player is created
+            console.log('Player is ready');
+            addButtons() //then we can add the button to the canva
             var selector = document.querySelector(".ltr-omkt8s")
             function callback(mutationsList, observer) {
                 mutationsList.forEach(mutation => {
                     if (mutation.attributeName === 'class') {
-                        if (selector.classList.contains("active")) {
+                        if (selector.classList.contains("active")) { //we have to add the button every time that the statusbar of the series is displayed
                             addButtons()
                         }
                     }
@@ -227,13 +223,13 @@
 
 
 
-        function createpopUpSettings() {
+        function createpopUpSettings() { //to create the subssettingsPopUp
             const popUpSettings = document.createElement("div");
-                    popUpSettings.id = "PopUpSetting"
-                    popUpSettings.className = "PopUpSetting-Class"
-                    
-                    //TODO Afficher la langue de sous titrage actuelle
-                    popUpSettings.innerHTML = `
+            popUpSettings.id = "PopUpSetting"
+            popUpSettings.className = "PopUpSetting-Class"
+
+            //TODO Afficher la langue de sous titrage actuelle
+            popUpSettings.innerHTML = `
                     <div class='container-setting-ext'>
                         <div id='title-container'>
                             <h1>Paramètre<h1>
@@ -254,24 +250,8 @@
                         </div>
                     </div>
                     `
-                    //ajout dans le canva
-                    placeInCanva(popUpSettings); 
-        }
-        
-        function getLanguagesOption(lang, langExtension) {
-
-            var select = document.createElement("select");
-            select.name = "language";
-            select.id = "language"
-
-            for (const val of lang) {
-                var option = document.createElement("option");
-                option.value = val;
-                option.text = val.valueOf(langExtension);
-                select.appendChild(option);
-            }
-
-
+            //ajout dans le canva
+            placeInCanva(popUpSettings);
         }
 
         const lang = JSON.parse({
