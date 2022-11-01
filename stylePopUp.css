@@ -63,8 +63,10 @@
 .parameter-icon-to-context{
     border-radius: 3px;
     padding: 3px;
+    width: 33px;
+    height: 33px;
 }
-.parameter-icon-to-context.icon {
+.parameter-icon-to-context .icon {
     background: url(https://cdn.discordapp.com/attachments/840647610247282749/1033132957961048094/carbon_settings.svg) no-repeat;
     float: left;
     width: 30px;
