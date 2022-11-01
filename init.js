@@ -1,29 +1,23 @@
 (
     function () {
 
-
         //dernier sous titre
         var translated = false;
         var lastSub = null;
         var lastSubTranslated = null;
+        var deleteTimeout = null;
         
-
-
-
         function addButtons() {
             var btn = document.createElement("input");
             btn.value = "";
             btn.id = "translate-btn";
             btn.type = "submit";
-            btn.onmouseout = function (event) {
-                deletePopUp();
-            };
-            btn.onmouseover = function (event) {
-                document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "hidden";
+            btn.addEventListener('mouseenter',(e)=>{
                 createPopUp();
-
-            };
-
+            });
+            btn.addEventListener('mouseleave',()=>{
+                deletePopUp();
+            })
             waitForElm(".ltr-1jnlk6v").then((elm) => {
                 document.querySelectorAll(".ltr-1jnlk6v")[6].prepend(btn); //the query selector select the div where all of the right bottom button are
                 //the prepend add the button before the childs 
@@ -31,84 +25,116 @@
         }
 
         function deletePopUp() {
-            if (lastSub == null) {
-                setTimeout(() => {
-                    const elements = document.getElementsByClassName("PopUpNoSubErrorClass");
-                    while (elements.length > 0) {
-                        elements[0].parentNode.removeChild(elements[0]);
-                    }
-                    document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "visible";
+            if (lastSub != null) {
+                deleteTimeout = setTimeout(() => {
+                    document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "visible"; //to set visible the red bar timer
+                    const popUpError = document.getElementById("PopUpTranslate");
+                    popUpError.remove();
+                    deleteTimeout = null;
+                    console.log('Ben said no');
                 }, 400);
             }
             else {
-                setTimeout(() => {
-                    const elements = document.getElementsByClassName("PopUpTranslate-Class");
-                    while (elements.length > 0) {
-                        elements[0].parentNode.removeChild(elements[0]);
-                    }
-                    document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "visible";
+                deleteTimeout = setTimeout(() => {
+                    document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "visible"; 
+                    const popUpSubtitle = document.getElementById("PopUpNoSubError");
+                    popUpSubtitle.remove();
+                    deleteTimeout = null;
+                    console.log('Ben said no');
                 }, 400);
             }
-
+            
         }
 
         function createPopUp() {
-            const sub = getSubtitles();
-            if (sub) {
-                //TODO Manage lang preferences
-                translateText(sub, 'EN', 'FR', (translate) => {
-                    const popUp = document.createElement("div");
-                    popUp.id = "PopUpTranslate"
-                    popUp.className = "PopUpTranslate-Class"
+            if(!document.getElementById('PopUpTranslate') && !document.getElementById('PopUpNoSubError')){  
+                const sub = getSubtitles();
+                document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "hidden"; //to hide the red bar
+                if (sub) {
+                    //TODO Manage lang preferences
+                    translateText(sub, 'EN', 'FR', (translate) => {
 
-                    //TODO Afficher la langue de sous titrage actuelle
-                    popUp.innerHTML = `
-                    <div class='container-translation-ext'>
-                        <div id='languages-container'>
-                            <div id='from-languages'><span lang='fr'>Langue détectée</span><span lang='en'>Detected language</span></div>
-                            <div class="language-and-parameter">
-                                <div id='to-languages'>Francais</div>
-                                <div class='parameter-icon-to-context'><span class="icon"></span><a href="#"></a><span></span></div></div>
+                        if (!document.getElementById('PopUpTranslate')) {
+                            
+                            const popUp = document.createElement("div");
+                            popUp.id = "PopUpTranslate"
+                            popUp.className = "PopUpTranslate-Class"
+    
+                            //TODO Afficher la langue de sous titrage actuelle
+                            popUp.innerHTML = `
+                            <div class='container-translation-ext'>
+                                <div id='languages-container'>
+                                    <div id='from-languages'><span lang='fr'>Langue détectée</span><span lang='en'>Detected language</span></div>
+                                    <div class="language-and-parameter">
+                                        <div id='to-languages'>Francais</div>
+                                        <div class='parameter-icon-to-context'><span class="icon"></span><a href="#"></a><span></span></div></div>
+                                    </div>
+                                </div>
+                                <div id='traduction-container'>
+                                    <div id='from-subtitles'><span>${lastSub}</span></div>
+                                    <div id='translated-subtitles'><span>${decodeURIComponent(translate)}</span></div>
+                                </div>
+                            </div>
+                            `
+                            popUp.addEventListener('mouseenter',(e)=>{
+                                console.log("ben")
+                                if(deleteTimeout){
+                                    clearTimeout(deleteTimeout);
+                                }
+                            });
+    
+                            popUp.addEventListener('mouseleave',(e)=>{
+                                deletePopUp();
+                            })
+                        
+                            //ajout dans le canva
+                            placeInCanva(popUp);
+                        }
+                        
+                    });
+                }
+                //aucun sous-titres
+                else {
+                    console.log("Error Pop Up")
+                    const popUpNoSub = document.createElement("div");
+                    popUpNoSub.id = "PopUpNoSubError"
+                    popUpNoSub.className = "PopUpNoSubErrorClass"
+                    popUpNoSub.innerHTML = `
+                    <div id='error-translation-container'>
+                        <div id='top-container'>
+                            <span lang='fr'>Aucun Sous-Titres</span>
+                            <span lang='en'>No subtitles available</span>
+                        </div>
+                        <div id='bottom-container'>
+                            <div id='no-subtitles'>
+                                <span lang='fr'>Aucun sous-titre disponible pour le moment</span>
+                                <span lang='en'>No subtitles available for now,please wait for the first subtitles</span>
                             </div>
                         </div>
-                        <div id='traduction-container'>
-                            <div id='from-subtitles'><span>${lastSub}</span></div>
-                            <div id='translated-subtitles'><span>${decodeURIComponent(translate)}</span></div>
-                        </div>  
                     </div>
                     `
-                    //ajout dans le canva
-                    placeInCanva(popUp);
-                });
-            }
-            //aucun sous-titres
-            else {
-                console.log("Error Pop Up")
-                const popUpNoSub = document.createElement("div");
-                popUpNoSub.id = "PopUpNoSubError"
-                popUpNoSub.className = "PopUpNoSubErrorClass"
-                popUpNoSub.innerHTML = `
-                <div id='error-translation-container'>
-                    <div id='top-container'>
-                        <span lang='fr'>Aucun Sous-Titres</span>
-                        <span lang='en'>No subtitles available</span>
-                    </div>
-                    <div id='bottom-container'>
-                        <div id='no-subtitles'>
-                            <span lang='fr'>Aucun sous-titre disponible pour le moment</span>
-                            <span lang='en'>No subtitles available for now,please wait for the first subtitles</span>
-                        </div>
-                    </div>
-                </div>
-                `
-                placeInCanva(popUpNoSub);
+                    popUpNoSub.addEventListener('mouseenter',(e)=>{
+
+                        if(deleteTimeout){
+                            clearTimeout(deleteTimeout);
+                        }
+                    });
+
+                    popUpNoSub.addEventListener('mouseleave',(e)=>{
+                        
+                        deletePopUp();
+                    })
+                    placeInCanva(popUpNoSub);
+                }
             }
         }
 
         function placeInCanva(popUp) {
-            const canva = document.querySelector('div.ltr-1212o1j');
+            // const canva = document.querySelector('div.ltr-1212o1j');
+            const canva = document.querySelector('.ltr-omkt8s');
             if (canva) {
                 canva.appendChild(popUp);
+                
             } else {
                 console.log('Video non trouvée !');
             }
@@ -174,8 +200,14 @@
                 });
             });
         }
+
+
+        
         waitForElm(".ltr-omkt8s").then((elm) => {
             console.log('Player is ready');
+            elm.addEventListener('mousemove',(e)=>{
+
+            })
             addButtons()
             var selector = document.querySelector(".ltr-omkt8s")
             function callback(mutationsList, observer) {
@@ -192,6 +224,8 @@
 
             mutationObserver.observe(selector, { attributes: true })
         });
+
+
 
         function createpopUpSettings() {
             const popUpSettings = document.createElement("div");
