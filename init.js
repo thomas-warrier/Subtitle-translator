@@ -10,7 +10,6 @@
             var btn = document.createElement("input");
             btn.value = "";
             btn.id = "translate-btn";
-            btn.type = "submit";
             btn.addEventListener('mouseenter', (e) => {
                 createPopUp();
             });
@@ -86,9 +85,15 @@
                             popUp.addEventListener('mouseleave', (e) => {
                                 deletePopUp();
                             })
+                            
 
                             //ajout dans le canva
                             placeInCanva(popUp);
+
+                            const parameterButton = document.querySelector(".parameter-icon-to-context")
+                            parameterButton.addEventListener('click',(e)=>{
+                                
+                            })
                         }
 
                     });
