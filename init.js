@@ -5,9 +5,10 @@
         var lastSub = null; //contain the last subtitles of the series
         var lastSubTranslated = null; //contain the last subtitles translated of var lastSub
         var deleteTimeout = null; //contain the timer of the popUp
+        var extensionLanguage = navigator.language //to get the navigator language
 
         function addButtons() { //to add the button to the netflix bar
-            var btn = document.createElement("input");
+            var btn = document.createElement("button");
             btn.value = "";
             btn.id = "translate-btn";
             btn.addEventListener('mouseenter', (e) => {
@@ -21,6 +22,15 @@
                 //the prepend add the button before the childs 
             });
         }
+
+        function toggleLang(element) {
+            if (extensionLanguage.contains("fr")) {
+                $('[lang="en"]').toggle();
+            } else {
+                $('[lang="fr"]').toggle();
+            }
+        }
+
 
         function deletePopUp() {
             if (lastSub != null) { //if subtitle are not null you will have to delete a translate popUp after 400ms
@@ -44,6 +54,8 @@
 
         }
 
+
+
         function createPopUp() {
             //if there is no popUp of translate and no popUp of error then you can create a popUp
             if (!document.getElementById('PopUpTranslate') && !document.getElementById('PopUpNoSubError')) {
@@ -52,15 +64,23 @@
                 if (sub) {
                     //TODO Manage lang preferences
                     translateText(sub, 'EN', 'FR', (translate) => {
+                        createTranslatePopUp(translate)
+                    });
+                }
+                //mean there is no subtitles to display
+                else {//create a popUp of error
+                    createErrorPopUp()
+                }
+            }
+        }
 
-                        if (!document.getElementById('PopUpTranslate')) {
+        function createTranslatePopUp(translate) {
+            const popUp = document.createElement("div");
+            popUp.id = "PopUpTranslate"
+            popUp.className = "PopUpTranslate-Class"
 
-                            const popUp = document.createElement("div");
-                            popUp.id = "PopUpTranslate"
-                            popUp.className = "PopUpTranslate-Class"
-
-                            //TODO Afficher la langue de sous titrage actuelle
-                            popUp.innerHTML = `
+            //TODO Afficher la langue de sous titrage actuelle
+            popUp.innerHTML = `
                             <div class='container-translation-ext'>
                                 <div id='languages-container'>
                                     <div id='from-languages'><span lang='fr'>Langue détectée</span><span lang='en'>Detected language</span></div>
@@ -75,36 +95,35 @@
                                 </div>
                             </div>
                             `
-                            popUp.addEventListener('mouseenter', (e) => {
-                                console.log("ben")
-                                if (deleteTimeout) {
-                                    clearTimeout(deleteTimeout);
-                                }
-                            });
-
-                            popUp.addEventListener('mouseleave', (e) => {
-                                deletePopUp();
-                            })
-                            
-
-                            //ajout dans le canva
-                            placeInCanva(popUp);
-
-                            const parameterButton = document.querySelector(".parameter-icon-to-context")
-                            parameterButton.addEventListener('click',(e)=>{
-                                
-                            })
-                        }
-
-                    });
+            popUp.addEventListener('mouseenter', (e) => {
+                console.log("ben")
+                if (deleteTimeout) {
+                    clearTimeout(deleteTimeout);
                 }
-                //mean there is no subtitles to display
-                else {//create a popUp of error
-                    console.log("Error Pop Up")
-                    const popUpNoSub = document.createElement("div");
-                    popUpNoSub.id = "PopUpNoSubError"
-                    popUpNoSub.className = "PopUpNoSubErrorClass"
-                    popUpNoSub.innerHTML = `
+            });
+
+            popUp.addEventListener('mouseleave', (e) => {
+                deletePopUp();
+            })
+
+
+            //ajout dans le canva
+            placeInCanva(popUp);
+
+
+            const parameterButton = document.querySelector(".parameter-icon-to-context")
+            parameterButton.addEventListener('click', (e) => {
+                deletePopUp()
+                createpopUpSettings()
+            })
+        }
+
+        function createErrorPopUp() {
+            console.log("Error Pop Up")
+            const popUpNoSub = document.createElement("div");
+            popUpNoSub.id = "PopUpNoSubError"
+            popUpNoSub.className = "PopUpNoSubErrorClass"
+            popUpNoSub.innerHTML = `
                     <div id='error-translation-container'>
                         <div id='top-container'>
                             <span lang='fr'>Aucun Sous-Titres</span>
@@ -118,21 +137,18 @@
                         </div>
                     </div>
                     `
-                    popUpNoSub.addEventListener('mouseenter', (e) => { //when mouse enter in popup delete timeout of normal delete
-                        if (deleteTimeout) {
-                            clearTimeout(deleteTimeout);
-                        }
-                    });
-
-                    popUpNoSub.addEventListener('mouseleave', (e) => {//when mouse leave the popUp delete the popUp
-                        deletePopUp();
-                    })
-                    placeInCanva(popUpNoSub);
+            popUpNoSub.addEventListener('mouseenter', (e) => { //when mouse enter in popup delete timeout of normal delete
+                if (deleteTimeout) {
+                    clearTimeout(deleteTimeout);
                 }
-            }
-        }
+            });
 
-        
+            popUpNoSub.addEventListener('mouseleave', (e) => {//when mouse leave the popUp delete the popUp
+                deletePopUp();
+            })
+            placeInCanva(popUpNoSub);
+
+        }
 
         function placeInCanva(popUp) { //to place something in the canva
             // const canva = document.querySelector('div.ltr-1212o1j');
@@ -235,179 +251,47 @@
 
             //TODO Afficher la langue de sous titrage actuelle
             popUpSettings.innerHTML = `
-                    <div class='container-setting-ext'>
-                        <div id='title-container'>
-                            <h1>Paramètre<h1>
-                        </div>
-                        <div id='setting-container'>
-                            <div id='from-subtitles-languages'>
-                                <h2>Langages sources</h2>
-                                ${availableLanguages()}
-                            </div>
-                            <div id='to-subtitles-languages'>
-                                <h2>Langages cible</h2>
-                                ${availableLanguages()}
-                            </div>
-                        </div>  
-                        <div id='extension-languages'>
-                                <h2>Langue de l'extension</h2>
-                                
-                        </div>
+            <div class='container-setting-ext'>
+            <div id='title-container'>
+                <div id='button-return'>
+                    <div class='return-icon'><span class="icon"></span><a href="#"></a><span></span></div>
+                </div>
+
+                <span class='title'>Paramètre</span>
+            </div>
+            <div id='setting-container'>
+                <div id='from-subtitles-languages'>
+                    <span>Langages sources</span>
+                    <div id='select-option'>
+                        <select name="from-lang" id="from-lang">
+                            <option value="English">English</option>
+                            <option value="French">French</option>
+                        </select>
                     </div>
+                </div>
+                <div id='to-subtitles-languages'>
+                    <span>Langages cible</span>
+                    <div id='select-option'>
+                        <select name="to-lang" id="to-lang">
+                            <option value="English">English</option>
+                            <option value="French">French</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id='extension-languages'>
+                <span>Langue de l'extension</span>
+                <div id='select-option'>
+                    <select name="extension-lang" id="extension-lang">
+                        <option value="English">English</option>
+                        <option value="French">French</option>
+                    </select>
+                </div>
+            </div>
+        </div>
                     `
             //ajout dans le canva
             placeInCanva(popUpSettings);
         }
 
-        const lang = JSON.parse({
-            "af": { "French": "Afrikaans", "English": "Afrikaans" },
-            "sq": { "French": "Albanais", "English": "Albanian" },
-            "am": { "French": "Amharique", "English": "Amharic" },
-            "ar": { "French": "Arabe", "English": "Arabic" },
-            "hy": { "French": "Arm\u00e9nien", "English": "Armenian" },
-            "as": { "French": "Assamais*", "English": "Assamese*" },
-            "ay": { "French": "Aymara*", "English": "Aymara*" },
-            "az": { "French": "Az\u00e9ri", "English": "Azerbaijani" },
-            "bm": { "French": "Bambara*", "English": "Bambara*" },
-            "eu": { "French": "Basque", "English": "Basque" },
-            "be": { "French": "Bi\u00e9lorusse", "English": "Belarusian" },
-            "bn": { "French": "Bengal\u00ee", "English": "Bengali" },
-            "bho": { "French": "Bhodjpouri*", "English": "Bhojpuri" },
-            "bs": { "French": "Bosniaque", "English": "Bosnian" },
-            "bg": { "French": "Bulgare", "English": "Bulgarian" },
-            "ca": { "French": "Catalan", "English": "Catalan" },
-            "ceb": { "French": "Cebuano", "English": "Cebuano" },
-            "zh-CN": {
-                "French": "Chinois (simplifi\u00e9)",
-                "English": "Chinese (Simplified)"
-            },
-            "zh-TW (BCP-47)": {
-                "French": "Chinois (traditionnel)",
-                "English": "Chinese (Traditional)"
-            },
-            "co": { "French": "Corse", "English": "Corsican" },
-            "hr": { "French": "Croate", "English": "Croatian" },
-            "cs": { "French": "Tch\u00e8que", "English": "Czech" },
-            "da": { "French": "Danois", "English": "Danish" },
-            "dv": { "French": "Div\u00e9hi*", "English": "Dhivehi*" },
-            "doi": { "French": "Dogri*", "English": "Dogri*" },
-            "nl": { "French": "N\u00e9erlandais", "English": "Dutch" },
-            "en": { "French": "Anglais", "English": "English" },
-            "eo": { "French": "Esp\u00e9ranto", "English": "Esperanto" },
-            "et": { "French": "Estonien", "English": "Estonian" },
-            "ee": { "French": "Ewe*", "English": "Ewe*" },
-            "fil": { "French": "Filipino (Tagalog)", "English": "Filipino (Tagalog)" },
-            "fi": { "French": "Finnois", "English": "Finnish" },
-            "fr": { "French": "Fran\u00e7ais", "English": "French" },
-            "fy": { "French": "Frison", "English": "Frisian" },
-            "gl": { "French": "Galicien", "English": "Galician" },
-            "ka": { "French": "G\u00e9orgien", "English": "Georgian" },
-            "de": { "French": "Allemand", "English": "German" },
-            "el": { "French": "Grec", "English": "Greek" },
-            "gn": { "French": "Guarani*", "English": "Guarani*" },
-            "gu": { "French": "Gujar\u00e2t\u00ee", "English": "Gujarati" },
-            "ht": { "French": "Cr\u00e9ole ha\u00eftien", "English": "Haitian Creole" },
-            "ha": { "French": "Haoussa", "English": "Hausa" },
-            "haw": { "French": "Hawa\u00efen", "English": "Hawaiian" },
-            "he or iw": { "French": "H\u00e9breu", "English": "Hebrew" },
-            "hi": { "French": "Hindi", "English": "Hindi" },
-            "hmn": { "French": "Hmong", "English": "Hmong" },
-            "hu": { "French": "Hongrois", "English": "Hungarian" },
-            "is": { "French": "Islandais", "English": "Icelandic" },
-            "ig": { "French": "Igbo", "English": "Igbo" },
-            "ilo": { "French": "Ilocano*", "English": "Ilocano*" },
-            "id": { "French": "Indon\u00e9sien", "English": "Indonesian" },
-            "ga": { "French": "Irlandais", "English": "Irish" },
-            "it": { "French": "Italien", "English": "Italian" },
-            "ja": { "French": "Japonais", "English": "Japanese" },
-            "jv": { "French": "Javanais", "English": "Javanese" },
-            "kn": { "French": "Kannara", "English": "Kannada" },
-            "kk": { "French": "Kazakh", "English": "Kazakh" },
-            "km": { "French": "Khmer", "English": "Khmer" },
-            "rw": { "French": "Kinyarwanda", "English": "Kinyarwanda" },
-            "gom": { "French": "Konkani*", "English": "Konkani*" },
-            "ko": { "French": "Cor\u00e9en", "English": "Korean" },
-            "kri": { "French": "Krio*", "English": "Krio*" },
-            "ku": { "French": "Kurde", "English": "Kurdish" },
-            "ckb": { "French": "Kurde (Sorani)*", "English": "Kurdish (Sorani)*" },
-            "ky": { "French": "Kirghyz", "English": "Kyrgyz" },
-            "lo": { "French": "Laotien", "English": "Lao" },
-            "la": { "French": "Latin", "English": "Latin" },
-            "lv": { "French": "Letton", "English": "Latvian" },
-            "ln": { "French": "Lingala*", "English": "Lingala*" },
-            "lt": { "French": "Lituanien", "English": "Lithuanian" },
-            "lg": { "French": "Luganda*", "English": "Luganda*" },
-            "lb": { "French": "Luxembourgeois", "English": "Luxembourgish" },
-            "mk": { "French": "Mac\u00e9donien", "English": "Macedonian" },
-            "mai": { "French": "Ma\u00efthili*", "English": "Maithili*" },
-            "mg": { "French": "Malgache", "English": "Malagasy" },
-            "ms": { "French": "Malais", "English": "Malay" },
-            "ml": { "French": "Malay\u00e2lam", "English": "Malayalam" },
-            "mt": { "French": "Maltais", "English": "Maltese" },
-            "mi": { "French": "Maori", "English": "Maori" },
-            "mr": { "French": "Marathi", "English": "Marathi" },
-            "mni-Mtei": {
-                "French": "Meitei (Manipuri)*",
-                "English": "Meiteilon (Manipuri)*"
-            },
-            "lus": { "French": "Mizo*", "English": "Mizo*" },
-            "mn": { "French": "Mongol", "English": "Mongolian" },
-            "my": { "French": "Birman", "English": "Myanmar (Burmese)" },
-            "ne": { "French": "N\u00e9palais", "English": "Nepali" },
-            "no": { "French": "Norv\u00e9gien", "English": "Norwegian" },
-            "ny": { "French": "Nyanja (Chichewa)", "English": "Nyanja (Chichewa)" },
-            "or": { "French": "Odia (Oriya)", "English": "Odia (Oriya)" },
-            "om": { "French": "Oromo*", "English": "Oromo*" },
-            "ps": { "French": "Pacht\u00f4", "English": "Pashto" },
-            "fa": { "French": "Perse", "English": "Persian" },
-            "pl": { "French": "Polonais", "English": "Polish" },
-            "pt": {
-                "French": "Portugais (Portugal, Br\u00e9sil)",
-                "English": "Portuguese (Portugal, Brazil)"
-            },
-            "pa": { "French": "Panjabi", "English": "Punjabi" },
-            "qu": { "French": "Quechua*", "English": "Quechua*" },
-            "ro": { "French": "Roumain", "English": "Romanian" },
-            "ru": { "French": "Russe", "English": "Russian" },
-            "sm": { "French": "Samoan", "English": "Samoan" },
-            "sa": { "French": "Sanskrit*", "English": "Sanskrit*" },
-            "gd": {
-                "French": "Ga\u00e9lique (\u00c9cosse)",
-                "English": "Scots Gaelic"
-            },
-            "nso": { "French": "Sepedi*", "English": "Sepedi*" },
-            "sr": { "French": "Serbe", "English": "Serbian" },
-            "st": { "French": "Sesotho", "English": "Sesotho" },
-            "sn": { "French": "Shona", "English": "Shona" },
-            "sd": { "French": "Sindh\u00ee", "English": "Sindhi" },
-            "si": { "French": "Singhalais", "English": "Sinhala (Sinhalese)" },
-            "sk": { "French": "Slovaque", "English": "Slovak" },
-            "sl": { "French": "Slov\u00e8ne", "English": "Slovenian" },
-            "so": { "French": "Somali", "English": "Somali" },
-            "es": { "French": "Spanish", "English": "Spanish" },
-            "su": { "French": "Soundanais", "English": "Sundanese" },
-            "sw": { "French": "Swahili", "English": "Swahili" },
-            "sv": { "French": "Su\u00e9dois", "English": "Swedish" },
-            "tl": { "French": "Tagalog (philippin)", "English": "Tagalog (Filipino)" },
-            "tg": { "French": "Tadjik", "English": "Tajik" },
-            "ta": { "French": "Tamoul", "English": "Tamil" },
-            "tt": { "French": "Tatar", "English": "Tatar" },
-            "te": { "French": "T\u00e9lougou", "English": "Telugu" },
-            "th": { "French": "Tha\u00ef", "English": "Thai" },
-            "ti": { "French": "Tigrinya*", "English": "Tigrinya*" },
-            "ts": { "French": "Tsonga*", "English": "Tsonga*" },
-            "tr": { "French": "Turc", "English": "Turkish" },
-            "tk": { "French": "Turkm\u00e8ne", "English": "Turkmen" },
-            "ak": { "French": "Twi (Akan)*", "English": "Twi (Akan)*" },
-            "uk": { "French": "Ukrainien", "English": "Ukrainian" },
-            "ur": { "French": "Urdu", "English": "Urdu" },
-            "ug": { "French": "Ou\u00efghour", "English": "Uyghur" },
-            "uz": { "French": "Ouzbek", "English": "Uzbek" },
-            "vi": { "French": "Vietnamien", "English": "Vietnamese" },
-            "cy": { "French": "Gallois", "English": "Welsh" },
-            "xh": { "French": "Xhosa", "English": "Xhosa" },
-            "yi": { "French": "Yiddish", "English": "Yiddish" },
-            "yo": { "French": "Yoruba", "English": "Yoruba" },
-            "zu": { "French": "Zoulou", "English": "Zulu" }
-        })
     })();

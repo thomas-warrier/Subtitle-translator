@@ -11,7 +11,8 @@
             "css": [
                 "styleButton.css",
                 "stylePopUp.css",
-                "styleErrorPopUp.css"
+                "styleErrorPopUp.css",
+                "styleSettingsPopUp.css"
             ],
             "matches": [
                 "*://www.netflix.com/watch/*"

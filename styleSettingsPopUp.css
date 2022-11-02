@@ -1,0 +1,78 @@
+#PopUpSetting{
+    font-size: 1.5rem;
+    border-radius: 15%;
+    position: absolute;
+    right: 30px;
+    bottom: 95px;
+    min-width: 400px;
+    max-width: 400px;
+    height: fit-content;
+    z-index: 100;
+}
+.container-setting-ext{
+    display: flex;
+    flex-direction: column;
+}
+
+#title-container{
+    background-color:#262626 ;
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-size: 27px;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+#setting-container,#extension-languages,#to-subtitles-languages,#from-subtitles-languages{
+    background-color: #131313;
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 18.9px;
+    padding: 10px;
+}
+#extension-languages:hover,#to-subtitles-languages:hover,#from-subtitles-languages:hover{
+    background-color:#262626 ;
+}
+
+#extension-languages{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#extension-languages,#to-subtitles-languages,#from-subtitles-languages{
+    display: flex;
+    flex-direction: row;
+}
+
+.return-icon{
+    border-radius: 3px;
+    padding: 3px;
+    width: 33px;
+    height:33px
+}
+#button-return{
+    flex:1;
+}
+.title{
+    flex:2;
+}
+.return-icon .icon {
+    background: url(https://cdn.discordapp.com/attachments/842494279900594216/1036298435080486963/eva_arrow-back-fill.svg) no-repeat;
+    float: left;
+    width: 30px;
+    height: 30px;
+    align-items: flex-end;
+}
+.return-icon:hover {
+    background-color: #131313;
+}
+
+
+
+
+
