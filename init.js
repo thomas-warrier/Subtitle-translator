@@ -15,7 +15,7 @@
                 createPopUp();
             });
             btn.addEventListener('mouseleave', () => {
-                deletePopUp();
+                deletePopUpWithDelay();
             })
             waitForElm(".ltr-1jnlk6v").then((elm) => {
                 document.querySelectorAll(".ltr-1jnlk6v")[6].prepend(btn); //the query selector select the div where all of the right bottom button are
@@ -23,30 +23,26 @@
             });
         }
 
-        function toggleLang(element) {
-            if (extensionLanguage.contains("fr")) {
-                $('[lang="en"]').toggle();
-            } else {
-                $('[lang="fr"]').toggle();
-            }
-        }
 
 
-        function deletePopUp() {
+
+        function deletePopUpWithDelay() { //delete the popUp with 400 ms delay
             if (lastSub != null) { //if subtitle are not null you will have to delete a translate popUp after 400ms
                 deleteTimeout = setTimeout(() => {
                     document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "visible"; //to set visible the red bar timer
-                    const popUpError = document.getElementById("PopUpTranslate");
-                    popUpError.remove();
-                    deleteTimeout = null;
-                    console.log('Ben said no');
+                    const popUpSubtitle = document.getElementById("PopUpTranslate");
+                    //if (popUpSubtitle != null) {
+                        popUpSubtitle.remove();
+                        deleteTimeout = null;
+                        console.log('Ben said no');
+
                 }, 400);
             }
             else { //else you will have to delete an error popUp after 400ms
                 deleteTimeout = setTimeout(() => {
                     document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "visible";
-                    const popUpSubtitle = document.getElementById("PopUpNoSubError");
-                    popUpSubtitle.remove();
+                    const popUpError = document.getElementById("PopUpNoSubError");
+                    popUpError.remove();
                     deleteTimeout = null;
                     console.log('Ben said no');
                 }, 400);
@@ -83,7 +79,7 @@
             popUp.innerHTML = `
                             <div class='container-translation-ext'>
                                 <div id='languages-container'>
-                                    <div id='from-languages'><span lang='fr'>Langue détectée</span><span lang='en'>Detected language</span></div>
+                                    <div id='from-languages'><span lang='en'>Detected language</span></div>
                                     <div class="language-and-parameter">
                                         <div id='to-languages'>Francais</div>
                                         <div class='parameter-icon-to-context'><span class="icon"></span><a href="#"></a><span></span></div></div>
@@ -97,14 +93,21 @@
                             `
             popUp.addEventListener('mouseenter', (e) => {
                 console.log("ben")
+                //blockPause()
                 if (deleteTimeout) {
                     clearTimeout(deleteTimeout);
                 }
+
             });
 
             popUp.addEventListener('mouseleave', (e) => {
-                deletePopUp();
+                deletePopUpWithDelay();
             })
+
+            popUp.addEventListener("click", (e) => { //to prevent from pause 
+                e.stopPropagation();
+            });
+
 
 
             //ajout dans le canva
@@ -113,10 +116,11 @@
 
             const parameterButton = document.querySelector(".parameter-icon-to-context")
             parameterButton.addEventListener('click', (e) => {
-                deletePopUp()
+                deletePopUpWithDelay()
                 createpopUpSettings()
             })
         }
+
 
         function createErrorPopUp() {
             console.log("Error Pop Up")
@@ -144,7 +148,7 @@
             });
 
             popUpNoSub.addEventListener('mouseleave', (e) => {//when mouse leave the popUp delete the popUp
-                deletePopUp();
+                deletePopUpWithDelay();
             })
             placeInCanva(popUpNoSub);
 
@@ -290,8 +294,18 @@
             </div>
         </div>
                     `
+            popUpSettings.addEventListener("click", (e) => { //to prevent from pause 
+                e.stopPropagation();
+            });
+
             //ajout dans le canva
             placeInCanva(popUpSettings);
+            const returnButton = document.querySelector(".return-icon")
+            returnButton.addEventListener('click', (e) => {
+                deletePopUpWithDelay();
+                createPopUp();
+            })
+
         }
 
     })();

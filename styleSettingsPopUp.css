@@ -25,6 +25,7 @@
     padding: 10px;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 #setting-container,#extension-languages,#to-subtitles-languages,#from-subtitles-languages{
