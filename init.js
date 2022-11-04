@@ -6,6 +6,8 @@
         var lastSubTranslated = null; //contain the last subtitles translated of var lastSub
         var deleteTimeout = null; //contain the timer of the popUp
         var extensionLanguage = navigator.language //to get the navigator language
+        var keyShortCut = 'h' //the short cut to open or close popUp
+        var popUpState = false //popUp translate can be open or close
 
         function addButtons() { //to add the button to the netflix bar
             var btn = document.createElement("button");
@@ -32,9 +34,9 @@
                     document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "visible"; //to set visible the red bar timer
                     const popUpSubtitle = document.getElementById("PopUpTranslate");
                     //if (popUpSubtitle != null) {
-                        popUpSubtitle.remove();
-                        deleteTimeout = null;
-                        console.log('Ben said no');
+                    popUpSubtitle.remove();
+                    deleteTimeout = null;
+                    console.log('Ben said no');
 
                 }, 400);
             }
@@ -307,5 +309,23 @@
             })
 
         }
+
+        document.addEventListener('keydown', (e) => {
+            const keyName = e.key;
+            console.log(e.key)
+            if (keyName === keyShortCut) {
+                console.log("good key")
+                if(!popUpState){
+                    popUpState=true
+                    console.log("in the if")
+                    
+                    createPopUp()
+                }else{
+                    console.log("in the else")
+                    popUpState=false
+                    deletePopUpWithDelay() //TODO replace with instant delete
+                }
+            }
+        })
 
     })();
