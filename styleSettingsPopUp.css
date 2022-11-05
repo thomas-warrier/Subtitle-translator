@@ -16,8 +16,6 @@
 
 #title-container{
     background-color:#262626 ;
-    color: white;
-    font-family: Helvetica, sans-serif;
     font-size: 27px;
     font-weight: bold;
     border-top-left-radius: 10px;
@@ -25,18 +23,19 @@
     padding: 10px;
     display: flex;
     flex-direction: row;
-    align-items: center;
 }
 
-#setting-container,#extension-languages,#to-subtitles-languages,#from-subtitles-languages{
+.container-ext{
     background-color: #131313;
     color: white;
     font-family: Helvetica, sans-serif;
     font-weight: normal;
     font-size: 18.9px;
     padding: 10px;
+    display: flex;
+    flex-direction: row;
 }
-#extension-languages:hover,#to-subtitles-languages:hover,#from-subtitles-languages:hover{
+.container-ext:hover{
     background-color:#262626 ;
 }
 
@@ -45,10 +44,7 @@
     border-bottom-left-radius: 10px;
 }
 
-#extension-languages,#to-subtitles-languages,#from-subtitles-languages{
-    display: flex;
-    flex-direction: row;
-}
+
 
 .return-icon{
     border-radius: 3px;

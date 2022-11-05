@@ -258,16 +258,16 @@
             //TODO Afficher la langue de sous titrage actuelle
             popUpSettings.innerHTML = `
             <div class='container-setting-ext'>
-            <div id='title-container'>
+            <div class='container-ext' id='title-container'>
                 <div id='button-return'>
                     <div class='return-icon'><span class="icon"></span><a href="#"></a><span></span></div>
                 </div>
 
-                <span class='title'>Paramètre</span>
+                <label class='title'>Paramètre</label>
             </div>
-            <div id='setting-container'>
-                <div id='from-subtitles-languages'>
-                    <span>Langages sources</span>
+            <div>
+                <div class='container-ext'>
+                    <label>Langages sources</label>
                     <div id='select-option'>
                         <select name="from-lang" id="from-lang">
                             <option value="English">English</option>
@@ -275,8 +275,8 @@
                         </select>
                     </div>
                 </div>
-                <div id='to-subtitles-languages'>
-                    <span>Langages cible</span>
+                <div class='container-ext'>
+                    <label>Langages cible</label>
                     <div id='select-option'>
                         <select name="to-lang" id="to-lang">
                             <option value="English">English</option>
@@ -285,8 +285,12 @@
                     </div>
                 </div>
             </div>
-            <div id='extension-languages'>
-                <span>Langue de l'extension</span>
+            <div class='container-ext'>
+                    <label>Raccourcis clavier</label>
+                    <span id='shortcut-choice'>h</span>
+            </div>
+            <div class='container-ext' id='extension-languages'>
+                <label>Langue de l'extension</label>
                 <div id='select-option'>
                     <select name="extension-lang" id="extension-lang">
                         <option value="English">English</option>
@@ -311,18 +315,17 @@
         }
 
         document.addEventListener('keydown', (e) => {
-            const keyName = e.key;
+            const keyName = e.key; //return a string of the name of the key pressed
             console.log(e.key)
-            if (keyName === keyShortCut) {
+            if (keyName === keyShortCut) { //if its the right key pressed
                 console.log("good key")
-                if(!popUpState){
-                    popUpState=true
+                if (!popUpState) {
+                    popUpState = true
                     console.log("in the if")
-                    
                     createPopUp()
-                }else{
+                } else {
                     console.log("in the else")
-                    popUpState=false
+                    popUpState = false
                     deletePopUpWithDelay() //TODO replace with instant delete
                 }
             }
