@@ -287,7 +287,7 @@
             </div>
             <div class='container-ext'>
                     <label>Raccourcis clavier</label>
-                    <span id='shortcut-choice'>h</span>
+                    <input type="text" id='shortcut-choice' readonly>
             </div>
             <div class='container-ext' id='extension-languages'>
                 <label>Langue de l'extension</label>
@@ -312,11 +312,23 @@
                 createPopUp();
             })
 
+            const choiceInput = document.querySelector("#shortcut-choice")
+            choiceInput.addEventListener('focus', (e) => {
+                    
+                    choiceInput.addEventListener('keydown', (e) => {
+                        e.stopPropagation()
+                        const keyName = e.key;
+                        choiceInput.value=keyName;
+                        keyShortCut=keyName;
+                        console.log(keyName)
+                        choiceInput.blur();
+                    });
+                
+            });
         }
 
         document.addEventListener('keydown', (e) => {
             const keyName = e.key; //return a string of the name of the key pressed
-            console.log(e.key)
             if (keyName === keyShortCut) { //if its the right key pressed
                 console.log("good key")
                 if (!popUpState) {
