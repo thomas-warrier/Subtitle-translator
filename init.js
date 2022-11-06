@@ -8,6 +8,9 @@
         var extensionLanguage = navigator.language //to get the navigator language
         var keyShortCut = 'h' //the short cut to open or close popUp
         var popUpState = false //popUp translate can be open or close
+        var fromLanguage = null;
+        var toLanguage = null;
+        var extLang = null;
 
         function addButtons() { //to add the button to the netflix bar
             var btn = document.createElement("button");
@@ -314,16 +317,27 @@
 
             const choiceInput = document.querySelector("#shortcut-choice")//when the user click to change the shortcut
             choiceInput.addEventListener('focus', (e) => {
-                    choiceInput.addEventListener('keydown', (e) => {
-                        e.stopPropagation() //to block the event on the document to open the popUp
-                        const keyName = e.key;
-                        choiceInput.value=keyName; //display the selected key for the user
-                        keyShortCut=keyName; //set the shortCut to the key selected
-                        choiceInput.blur();//unfocus the input when key is selected
-                    });
-                
+                choiceInput.addEventListener('keydown', (e) => {
+                    e.stopPropagation() //to block the event on the document to open the popUp
+                    const keyName = e.key;
+                    choiceInput.value = keyName; //display the selected key for the user
+                    keyShortCut = keyName; //set the shortCut to the key selected
+                    choiceInput.blur();//unfocus the input when key is selected
+                });
+
             });
+
+            const choiceFromLang = document.querySelector("#from-lang")
+            choiceFromLang.addEventListener('change', (e) => { fromLanguage = this.value; })
+            const choiceToLang = document.querySelector("#to-lang")
+            choiceToLang.addEventListener('change', (e) => { toLanguage = this.value; })
+            const choiceExtLang = document.querySelector("#extension-lang")
+            choiceExtLang.addEventListener('change', (e) => { extLanguage = this.value; })
+
+
         }
+
+
 
         document.addEventListener('keydown', (e) => {
             const keyName = e.key; //return a string of the name of the key pressed
