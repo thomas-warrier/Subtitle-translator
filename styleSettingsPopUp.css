@@ -35,7 +35,7 @@
     display: flex;
     flex-direction: row;
 }
-.container-ext:hover{
+.container-ext:hover,#shortcut-choice:focus{
     background-color:#262626 ;
 }
 
@@ -65,9 +65,19 @@
     height: 30px;
     align-items: flex-end;
 }
-.return-icon:hover {
+.return-icon:hover{
     background-color: #131313;
 }
+
+.choice-option{
+    background-color: #131313;
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 18.9px;
+    border-radius: 5px;
+}
+
 
 
 

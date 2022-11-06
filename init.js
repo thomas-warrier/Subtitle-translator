@@ -269,7 +269,7 @@
                 <div class='container-ext'>
                     <label>Langages sources</label>
                     <div id='select-option'>
-                        <select name="from-lang" id="from-lang">
+                        <select class='choice-option' name="from-lang" id="from-lang">
                             <option value="English">English</option>
                             <option value="French">French</option>
                         </select>
@@ -278,7 +278,7 @@
                 <div class='container-ext'>
                     <label>Langages cible</label>
                     <div id='select-option'>
-                        <select name="to-lang" id="to-lang">
+                        <select class='choice-option' name="to-lang" id="to-lang">
                             <option value="English">English</option>
                             <option value="French">French</option>
                         </select>
@@ -287,12 +287,12 @@
             </div>
             <div class='container-ext'>
                     <label>Raccourcis clavier</label>
-                    <input type="text" id='shortcut-choice' readonly>
+                    <input class='choice-option' type="text" id='shortcut-choice' readonly>
             </div>
             <div class='container-ext' id='extension-languages'>
                 <label>Langue de l'extension</label>
                 <div id='select-option'>
-                    <select name="extension-lang" id="extension-lang">
+                    <select class='choice-option' name="extension-lang" id="extension-lang">
                         <option value="English">English</option>
                         <option value="French">French</option>
                     </select>
@@ -320,7 +320,6 @@
                         const keyName = e.key;
                         choiceInput.value=keyName;
                         keyShortCut=keyName;
-                        console.log(keyName)
                         choiceInput.blur();
                     });
                 
