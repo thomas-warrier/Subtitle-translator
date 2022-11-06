@@ -324,15 +324,11 @@
                     keyShortCut = keyName; //set the shortCut to the key selected
                     choiceInput.blur();//unfocus the input when key is selected
                 });
-
             });
 
-            const choiceFromLang = document.querySelector("#from-lang")//when the user change the from language
-            choiceFromLang.addEventListener('change', (e) => { fromLanguage = this.value; })
-            const choiceToLang = document.querySelector("#to-lang")//when the user change the to language
-            choiceToLang.addEventListener('change', (e) => { toLanguage = this.value; })
-            const choiceExtLang = document.querySelector("#extension-lang")//when the user change the extension language
-            choiceExtLang.addEventListener('change', (e) => { extLanguage = this.value; })
+            document.querySelector("#from-lang").addEventListener('change', (e) => { fromLanguage = this.value; })//when the user change the from language
+            document.querySelector("#to-lang").addEventListener('change', (e) => { toLanguage = this.value; })//when the user change the to language
+            document.querySelector("#extension-lang").addEventListener('change', (e) => { extLanguage = this.value; })//when the user change the extension language
 
 
         }
