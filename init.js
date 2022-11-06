@@ -306,21 +306,20 @@
 
             //ajout dans le canva
             placeInCanva(popUpSettings);
-            const returnButton = document.querySelector(".return-icon")
+            const returnButton = document.querySelector(".return-icon")//when the user click on the return icon
             returnButton.addEventListener('click', (e) => {
                 deletePopUpWithDelay();
                 createPopUp();
             })
 
-            const choiceInput = document.querySelector("#shortcut-choice")
+            const choiceInput = document.querySelector("#shortcut-choice")//when the user click to change the shortcut
             choiceInput.addEventListener('focus', (e) => {
-                    
                     choiceInput.addEventListener('keydown', (e) => {
-                        e.stopPropagation()
+                        e.stopPropagation() //to block the event on the document to open the popUp
                         const keyName = e.key;
-                        choiceInput.value=keyName;
-                        keyShortCut=keyName;
-                        choiceInput.blur();
+                        choiceInput.value=keyName; //display the selected key for the user
+                        keyShortCut=keyName; //set the shortCut to the key selected
+                        choiceInput.blur();//unfocus the input when key is selected
                     });
                 
             });
@@ -332,10 +331,8 @@
                 console.log("good key")
                 if (!popUpState) {
                     popUpState = true
-                    console.log("in the if")
                     createPopUp()
                 } else {
-                    console.log("in the else")
                     popUpState = false
                     deletePopUpWithDelay() //TODO replace with instant delete
                 }
