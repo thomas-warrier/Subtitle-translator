@@ -327,11 +327,11 @@
 
             });
 
-            const choiceFromLang = document.querySelector("#from-lang")
+            const choiceFromLang = document.querySelector("#from-lang")//when the user change the from language
             choiceFromLang.addEventListener('change', (e) => { fromLanguage = this.value; })
-            const choiceToLang = document.querySelector("#to-lang")
+            const choiceToLang = document.querySelector("#to-lang")//when the user change the to language
             choiceToLang.addEventListener('change', (e) => { toLanguage = this.value; })
-            const choiceExtLang = document.querySelector("#extension-lang")
+            const choiceExtLang = document.querySelector("#extension-lang")//when the user change the extension language
             choiceExtLang.addEventListener('change', (e) => { extLanguage = this.value; })
 
 
