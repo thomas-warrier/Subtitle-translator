@@ -326,9 +326,9 @@
                 });
             });
 
-            document.querySelector("#from-lang").addEventListener('change', (e) => { fromLanguage = this.value; })//when the user change the from language
-            document.querySelector("#to-lang").addEventListener('change', (e) => { toLanguage = this.value; })//when the user change the to language
-            document.querySelector("#extension-lang").addEventListener('change', (e) => { extLanguage = this.value; })//when the user change the extension language
+            document.querySelector("#from-lang").addEventListener('change', (e) => { fromLanguage = e.target.value;})//when the user change the from language
+            document.querySelector("#to-lang").addEventListener('change', (e) => { toLanguage = e.target.value; })//when the user change the to language
+            document.querySelector("#extension-lang").addEventListener('change', (e) => { extLanguage = e.target.value; })//when the user change the extension language
 
 
         }
