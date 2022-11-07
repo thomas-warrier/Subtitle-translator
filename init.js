@@ -1,6 +1,5 @@
 (
     function () {
-
         var translated = false; //true if subtitles of the popUp have been translated,false otherwise
         var lastSub = null; //contain the last subtitles of the series
         var lastSubTranslated = null; //contain the last subtitles translated of var lastSub
@@ -11,6 +10,7 @@
         var fromLanguage = null;
         var toLanguage = null;
         var extLang = null;
+        var activePopUp = null; //current popup that is being displayed
 
         function addButtons() { //to add the button to the netflix bar
             var btn = document.createElement("button");
@@ -29,43 +29,26 @@
         }
 
 
+        // PopUp management
 
-
-        function deletePopUpWithDelay() { //delete the popUp with 400 ms delay
-            if (lastSub != null) { //if subtitle are not null you will have to delete a translate popUp after 400ms
-                deleteTimeout = setTimeout(() => {
-                    document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "visible"; //to set visible the red bar timer
-                    const popUpSubtitle = document.getElementById("PopUpTranslate");
-                    //if (popUpSubtitle != null) {
-                    popUpSubtitle.remove();
-                    deleteTimeout = null;
-                    console.log('Ben said no');
-
-                }, 400);
-            }
-            else { //else you will have to delete an error popUp after 400ms
-                deleteTimeout = setTimeout(() => {
-                    document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "visible";
-                    const popUpError = document.getElementById("PopUpNoSubError");
-                    popUpError.remove();
-                    deleteTimeout = null;
-                    console.log('Ben said no');
-                }, 400);
-            }
-
+        function deletePopUpWithDelay() {
+            deleteTimeout = setTimeout(() => {
+                setTimeBarVisible();
+                removeActivePopUp();
+                deleteTimeout = null;
+            }, 400);
         }
-
-
 
         function createPopUp() {
             //if there is no popUp of translate and no popUp of error then you can create a popUp
             if (!document.getElementById('PopUpTranslate') && !document.getElementById('PopUpNoSubError')) {
                 const sub = getSubtitles();
-                document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = "hidden"; //to hide the red bar
+                setTimeBarVisible();
                 if (sub) {
                     //TODO Manage lang preferences
                     translateText(sub, 'EN', 'FR', (translate) => {
-                        createTranslatePopUp(translate)
+                            createTranslatePopUp(translate)
+                            console.log("création d'une div popUP")
                     });
                 }
                 //mean there is no subtitles to display
@@ -75,6 +58,7 @@
             }
         }
 
+        // PopUp avec une traduction
         function createTranslatePopUp(translate) {
             const popUp = document.createElement("div");
             popUp.id = "PopUpTranslate"
@@ -97,12 +81,9 @@
                             </div>
                             `
             popUp.addEventListener('mouseenter', (e) => {
-                console.log("ben")
-                //blockPause()
                 if (deleteTimeout) {
                     clearTimeout(deleteTimeout);
                 }
-
             });
 
             popUp.addEventListener('mouseleave', (e) => {
@@ -113,12 +94,9 @@
                 e.stopPropagation();
             });
 
-
-
             //ajout dans le canva
             placeInCanva(popUp);
-
-
+            setActivePopUp('#PopUpTranslate');
             const parameterButton = document.querySelector(".parameter-icon-to-context")
             parameterButton.addEventListener('click', (e) => {
                 deletePopUpWithDelay()
@@ -126,7 +104,7 @@
             })
         }
 
-
+        // PopUp avec message d'erreur
         function createErrorPopUp() {
             console.log("Error Pop Up")
             const popUpNoSub = document.createElement("div");
@@ -156,6 +134,8 @@
                 deletePopUpWithDelay();
             })
             placeInCanva(popUpNoSub);
+
+            setActivePopUp('#PopUpNoSubError');
 
         }
 
@@ -189,8 +169,6 @@
             }
             callback(lastSubTranslated);
         }
-
-
 
         function getSubtitles() {
             var childrenExist = document.querySelector("div.player-timedtext-text-container > span"); //select the span where subtitles are contain (return null if there is no subtitles)
@@ -309,6 +287,7 @@
 
             //ajout dans le canva
             placeInCanva(popUpSettings);
+            setActivePopUp('#PopUpSetting');
             const returnButton = document.querySelector(".return-icon")//when the user click on the return icon
             returnButton.addEventListener('click', (e) => {
                 deletePopUpWithDelay();
@@ -328,12 +307,8 @@
 
             document.querySelector("#from-lang").addEventListener('change', (e) => { fromLanguage = e.target.value;})//when the user change the from language
             document.querySelector("#to-lang").addEventListener('change', (e) => { toLanguage = e.target.value; })//when the user change the to language
-            document.querySelector("#extension-lang").addEventListener('change', (e) => { extLanguage = e.target.value; })//when the user change the extension language
-
-
+            document.querySelector("#extension-lang").addEventListener('change', (e) => { extensionLanguage = e.target.value; })//when the user change the extension language
         }
-
-
 
         document.addEventListener('keydown', (e) => {
             const keyName = e.key; //return a string of the name of the key pressed
@@ -344,9 +319,30 @@
                     createPopUp()
                 } else {
                     popUpState = false
-                    deletePopUpWithDelay() //TODO replace with instant delete
+                    removeActivePopUp();
                 }
             }
         })
+
+        // Active PopUp management
+
+        function setActivePopUp(selector) {
+            if (activePopUp != null) {
+                activePopUp.remove();
+            }
+            activePopUp = document.querySelector(selector);
+        }
+
+        function removeActivePopUp() {
+            if (activePopUp != null) {
+                activePopUp.remove();
+                console.log('Active PopUp deleted');
+            }
+        }
+
+        // Change TimeBarVisibility
+        function setTimeBarVisible(state = true){
+            document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = state ? "hidden" : "none";
+        }
 
     })();
