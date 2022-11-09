@@ -39,6 +39,12 @@
             }, 400);
         }
 
+        function deletePopUpInstant() {
+                setTimeBarVisible(false);
+                removeActivePopUp();
+                deleteTimeout = null;
+        }
+
         function createPopUp() {
             //if there is no popUp of translate and no popUp of error then you can create a popUp
             if (!document.getElementById('PopUpTranslate') && !document.getElementById('PopUpNoSubError')) {
@@ -54,13 +60,14 @@
                 //mean there is no subtitles to display
                 else {//create a popUp of error
                     createErrorPopUp()
-                    
+
                 }
             }
         }
 
         // PopUp avec une traduction
         function createTranslatePopUp(translate) {
+           
             const popUp = document.createElement("div");
             popUp.id = "PopUpTranslate"
             popUp.className = "PopUpTranslate-Class"
@@ -100,7 +107,7 @@
             setActivePopUp('#PopUpTranslate');
             const parameterButton = document.querySelector(".parameter-icon-to-context")
             parameterButton.addEventListener('click', (e) => {
-                deletePopUpWithDelay()
+                deletePopUpInstant()
                 createpopUpSettings()
             })
         }
@@ -233,6 +240,7 @@
 
 
         function createpopUpSettings() { //to create the subssettingsPopUp
+            setTimeBarVisible(false);
             const popUpSettings = document.createElement("div");
             popUpSettings.id = "PopUpSetting"
             popUpSettings.className = "PopUpSetting-Class"
@@ -288,10 +296,11 @@
 
             //ajout dans le canva
             placeInCanva(popUpSettings);
+            setActivePopUp("#PopUpSetting");
             
             const returnButton = document.querySelector(".return-icon")//when the user click on the return icon
             returnButton.addEventListener('click', (e) => {
-                deletePopUpWithDelay();
+                deletePopUpInstant();
                 createPopUp();
             })
 
