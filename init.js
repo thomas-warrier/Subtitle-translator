@@ -33,7 +33,7 @@
 
         function deletePopUpWithDelay() {
             deleteTimeout = setTimeout(() => {
-                setTimeBarVisible();
+                setTimeBarVisible(false);
                 removeActivePopUp();
                 deleteTimeout = null;
             }, 400);
@@ -43,7 +43,7 @@
             //if there is no popUp of translate and no popUp of error then you can create a popUp
             if (!document.getElementById('PopUpTranslate') && !document.getElementById('PopUpNoSubError')) {
                 const sub = getSubtitles();
-                setTimeBarVisible();
+                setTimeBarVisible(true);
                 if (sub) {
                     //TODO Manage lang preferences
                     translateText(sub, 'EN', 'FR', (translate) => {
@@ -54,6 +54,7 @@
                 //mean there is no subtitles to display
                 else {//create a popUp of error
                     createErrorPopUp()
+                    
                 }
             }
         }
@@ -287,7 +288,7 @@
 
             //ajout dans le canva
             placeInCanva(popUpSettings);
-            setActivePopUp('#PopUpSetting');
+            
             const returnButton = document.querySelector(".return-icon")//when the user click on the return icon
             returnButton.addEventListener('click', (e) => {
                 deletePopUpWithDelay();
@@ -316,7 +317,7 @@
                 console.log("good key")
                 if (!popUpState) {
                     popUpState = true
-                    createPopUp()
+                    createPopUp();
                 } else {
                     popUpState = false
                     removeActivePopUp();
@@ -341,8 +342,8 @@
         }
 
         // Change TimeBarVisibility
-        function setTimeBarVisible(state = true){
-            document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = state ? "hidden" : "none";
+        function setTimeBarVisible(state){
+            document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = state ? "hidden" : "visible";
         }
 
     })();
