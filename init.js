@@ -355,4 +355,12 @@
             document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = state ? "hidden" : "visible";
         }
 
+        function saveVarInStorage(){
+            varList = [];
+            varList.push({"key": keyShortCut,"from": fromLanguage,"to": toLanguage,"ext": extLang})
+            browser.storage.local.set('varList', JSON.stringify(varList))
+        }
+        function restoreStorageVar(){
+
+        }
     })();

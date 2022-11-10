@@ -18,5 +18,9 @@
                 "*://www.netflix.com/watch/*"
             ]
         }
+    ],
+    "permission":[
+        "storage"
     ]
+    
 }
