@@ -35,7 +35,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-right: 15px;
+    padding-right: 15px;   
 }
 .container-ext:hover,#shortcut-choice:focus{
     background-color:#262626 ;
