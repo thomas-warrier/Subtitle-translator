@@ -216,8 +216,8 @@
             });
         }
 
-
-
+        restoreStorageVar();
+        
         waitForElm(".ltr-omkt8s").then((elm) => { //we wait till the player is created
             console.log('Player is ready');
             addButtons() //then we can add the button to the canva
@@ -300,6 +300,7 @@
             
             const returnButton = document.querySelector(".return-icon")//when the user click on the return icon
             returnButton.addEventListener('click', (e) => {
+                saveVarInStorage();
                 deletePopUpInstant();
                 createPopUp();
             })
@@ -356,11 +357,15 @@
         }
 
         function saveVarInStorage(){
-            varList = [];
-            varList.push({"key": keyShortCut,"from": fromLanguage,"to": toLanguage,"ext": extLang})
-            browser.storage.local.set('varList', JSON.stringify(varList))
+            let varList = [];
+            varList.push(keyShortCut,fromLanguage,toLanguage,extLang);
+            browser.storage.local.set('varList',varList);
         }
         function restoreStorageVar(){
-
+            let varList = browser.storage.local.get('varList');
+            keyShortCut=varList[0];
+            fromLanguage=varList[1];
+            toLanguage=varList[2];
+            extLang=varList[3];
         }
     })();
