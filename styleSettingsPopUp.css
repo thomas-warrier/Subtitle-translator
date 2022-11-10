@@ -34,6 +34,8 @@
     padding: 10px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    padding-right: 15px;
 }
 .container-ext:hover,#shortcut-choice:focus{
     background-color:#262626 ;
@@ -76,8 +78,13 @@
     font-weight: normal;
     font-size: 18.9px;
     border-radius: 5px;
+    padding-right: 30px;
 }
 
+#shortcut-choice{
+    width: 80px;
+    max-width: fit-content;
+}
 
 
 

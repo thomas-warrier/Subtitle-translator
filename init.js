@@ -256,7 +256,7 @@
                 <label class='title'>Paramètre</label>
             </div>
             <div>
-                <div class='container-ext'>
+                <div class='container-ext'> 
                     <label>Langages sources</label>
                     <div id='select-option'>
                         <select class='choice-option' name="from-lang" id="from-lang">
@@ -277,7 +277,7 @@
             </div>
             <div class='container-ext'>
                     <label>Raccourcis clavier</label>
-                    <input class='choice-option' type="text" id='shortcut-choice' readonly>
+                    <input class='choice-option' type="text" id='shortcut-choice' value='${keyShortCut}' readonly>
             </div>
             <div class='container-ext' id='extension-languages'>
                 <label>Langue de l'extension</label>
