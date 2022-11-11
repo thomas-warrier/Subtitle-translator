@@ -4,12 +4,11 @@
         var lastSub = null; //contain the last subtitles of the series
         var lastSubTranslated = null; //contain the last subtitles translated of var lastSub
         var deleteTimeout = null; //contain the timer of the popUp
-        var extensionLanguage = navigator.language //to get the navigator language
+        var extensionLanguage=null; //to get the navigator language
         var keyShortCut = 'h' //the short cut to open or close popUp
         var popUpState = false //popUp translate can be open or close
         var fromLanguage = null;
         var toLanguage = null;
-        var extLang = null;
         var activePopUp = null; //current popup that is being displayed
 
         function addButtons() { //to add the button to the netflix bar
@@ -304,7 +303,7 @@
             const selectTo = document.getElementById('to-lang')
             selectTo.value=toLanguage;
             const selectExtLanguage= document.getElementById('extension-lang');
-            selectExtLanguage.value=extLang;
+            selectExtLanguage.value=extensionLanguage;
 
             const returnButton = document.querySelector(".return-icon")//when the user click on the return icon
             returnButton.addEventListener('click', (e) => {
@@ -338,7 +337,7 @@
 
             document.querySelector("#extension-lang").addEventListener('change', (e) => { //when the user change the extension language
                 extensionLanguage = e.target.value;
-                chrome.storage.local.set({ "extLang": extLang })
+                chrome.storage.local.set({ "extensionLanguage": extensionLanguage })
             })
         }
 
@@ -387,8 +386,9 @@
             chrome.storage.local.get("toLanguage", (r) => {
                 toLanguage = r.toLanguage
             });
-            chrome.storage.local.get("extLang", (r) => {
-                extLang = r.extLang
+            chrome.storage.local.get("extensionLanguage", (r) => {
+                extensionLanguage = r.extensionLanguage
             });
+            if(extensionLanguage==null){extensionLanguage=navigator.language}
         }
     })();
