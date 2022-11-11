@@ -27,7 +27,16 @@
                 //the prepend add the button before the childs 
             });
         }
+        chrome.storage.local.get("txt", (r) => {
+            console.log(r)
+        })
 
+        chrome.storage.local.set({ "txt": "bite" })
+
+        chrome.storage.local.get("txt", (r) => {
+            console.log(r)
+        })
+        restoreStorageVar();
 
         // PopUp management
 
@@ -40,9 +49,9 @@
         }
 
         function deletePopUpInstant() {
-                setTimeBarVisible(false);
-                removeActivePopUp();
-                deleteTimeout = null;
+            setTimeBarVisible(false);
+            removeActivePopUp();
+            deleteTimeout = null;
         }
 
         function createPopUp() {
@@ -53,8 +62,8 @@
                 if (sub) {
                     //TODO Manage lang preferences
                     translateText(sub, 'EN', 'FR', (translate) => {
-                            createTranslatePopUp(translate)
-                            console.log("création d'une div popUP")
+                        createTranslatePopUp(translate)
+                        console.log("création d'une div popUP")
                     });
                 }
                 //mean there is no subtitles to display
@@ -67,7 +76,7 @@
 
         // PopUp avec une traduction
         function createTranslatePopUp(translate) {
-           
+
             const popUp = document.createElement("div");
             popUp.id = "PopUpTranslate"
             popUp.className = "PopUpTranslate-Class"
@@ -217,7 +226,7 @@
         }
 
         restoreStorageVar();
-        
+
         waitForElm(".ltr-omkt8s").then((elm) => { //we wait till the player is created
             console.log('Player is ready');
             addButtons() //then we can add the button to the canva
@@ -297,10 +306,9 @@
             //ajout dans le canva
             placeInCanva(popUpSettings);
             setActivePopUp("#PopUpSetting");
-            
+
             const returnButton = document.querySelector(".return-icon")//when the user click on the return icon
             returnButton.addEventListener('click', (e) => {
-                saveVarInStorage();
                 deletePopUpInstant();
                 createPopUp();
             })
@@ -312,13 +320,27 @@
                     const keyName = e.key;
                     choiceInput.value = keyName; //display the selected key for the user
                     keyShortCut = keyName; //set the shortCut to the key selected
+                    chrome.storage.local.set({ "keyShortCut": keyShortCut });
                     choiceInput.blur();//unfocus the input when key is selected
                 });
             });
 
-            document.querySelector("#from-lang").addEventListener('change', (e) => { fromLanguage = e.target.value;})//when the user change the from language
-            document.querySelector("#to-lang").addEventListener('change', (e) => { toLanguage = e.target.value; })//when the user change the to language
-            document.querySelector("#extension-lang").addEventListener('change', (e) => { extensionLanguage = e.target.value; })//when the user change the extension language
+            document.querySelector("#from-lang").addEventListener('change', (e) => { //when the user change the from language
+                fromLanguage = e.target.value;
+                chrome.storage.local.set({
+                    "fromLanguage": fromLanguage
+                })
+            })
+
+            document.querySelector("#to-lang").addEventListener('change', (e) => { //when the user change the to language
+                toLanguage = e.target.value;
+                chrome.storage.local.set({ "toLanguage": toLanguage })
+            })
+
+            document.querySelector("#extension-lang").addEventListener('change', (e) => { //when the user change the extension language
+                extensionLanguage = e.target.value;
+                chrome.storage.local.set({ "extLang": extLang })
+            })
         }
 
         document.addEventListener('keydown', (e) => {
@@ -352,20 +374,22 @@
         }
 
         // Change TimeBarVisibility
-        function setTimeBarVisible(state){
+        function setTimeBarVisible(state) {
             document.querySelector("div.ltr-1bt0omd:nth-child(1) > div:nth-child(1)").style.visibility = state ? "hidden" : "visible";
         }
 
-        function saveVarInStorage(){
-            let varList = [];
-            varList.push(keyShortCut,fromLanguage,toLanguage,extLang);
-            browser.storage.local.set('varList',varList);
-        }
-        function restoreStorageVar(){
-            let varList = browser.storage.local.get('varList');
-            keyShortCut=varList[0];
-            fromLanguage=varList[1];
-            toLanguage=varList[2];
-            extLang=varList[3];
+        function restoreStorageVar() {
+            chrome.storage.local.get("keyShortCut", (r) => {
+                keyShortCut = r.keyShortCut
+            });
+            chrome.storage.local.get("fromLanguage", (r) => {
+                fromLanguage = r.fromLanguage
+            });
+            chrome.storage.local.get("toLanguage", (r) => {
+                toLanguage = r.toLanguage
+            });
+            chrome.storage.local.get("extLang", (r) => {
+                extLang = r.extLang
+            });
         }
     })();
