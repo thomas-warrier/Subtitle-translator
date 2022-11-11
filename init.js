@@ -27,15 +27,7 @@
                 //the prepend add the button before the childs 
             });
         }
-        chrome.storage.local.get("txt", (r) => {
-            console.log(r)
-        })
-
-        chrome.storage.local.set({ "txt": "bite" })
-
-        chrome.storage.local.get("txt", (r) => {
-            console.log(r)
-        })
+        
         restoreStorageVar();
 
         // PopUp management
