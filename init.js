@@ -261,8 +261,8 @@
                     <label>Langages sources</label>
                     <div id='select-option'>
                         <select class='choice-option' name="from-lang" id="from-lang">
-                            <option value="English">English</option>
-                            <option value="French">French</option>
+                            <option value="EN">English</option>
+                            <option value="FR">French</option>
                         </select>
                     </div>
                 </div>
@@ -270,8 +270,8 @@
                     <label>Langages cible</label>
                     <div id='select-option'>
                         <select class='choice-option' name="to-lang" id="to-lang">
-                            <option value="English">English</option>
-                            <option value="French">French</option>
+                            <option value="EN">English</option>
+                            <option value="FR">French</option>
                         </select>
                     </div>
                 </div>
@@ -298,6 +298,13 @@
             //ajout dans le canva
             placeInCanva(popUpSettings);
             setActivePopUp("#PopUpSetting");
+
+            const selectFrom = document.getElementById('from-lang'); //to set the selected value of every settings select
+            selectFrom.value=fromLanguage;
+            const selectTo = document.getElementById('to-lang')
+            selectTo.value=toLanguage;
+            const selectExtLanguage= document.getElementById('extension-lang');
+            selectExtLanguage.value=extLang;
 
             const returnButton = document.querySelector(".return-icon")//when the user click on the return icon
             returnButton.addEventListener('click', (e) => {
