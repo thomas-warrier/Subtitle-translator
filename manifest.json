@@ -6,6 +6,11 @@
     "content_scripts": [
         {
             "js": [
+                "waiter.js",
+                "popUp.js",
+                "popUpTranslate.js",
+                "popUpError.js",
+                "popUpSettings.js",
                 "init.js"
             ],
             "css": [
