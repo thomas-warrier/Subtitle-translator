@@ -34,26 +34,7 @@ var activePopUp = null; //current popup that is being displayed
         // I restore the parameter of the user
         restoreStorageVar();
 
-        function setExtensionLanguage(newLanguage){
-            if (newLanguage == null) { newLanguage = navigator.language }
-            console.log(extensionLanguage);
-            //TODO put this function with switch case maybe in antoher file
-            switch (newLanguage) {
-                case "fr":
-                case "fr-FR":
-                    extensionLanguage = langFr;
-                    break;
-            
-                case "en-GB":
-                case "en":
-                    extensionLanguage = langEn;
-                    break;
-                default:
-                    //TODO put En in default
-                    break;
-            }
-            console.log(extensionLanguage);
-        }
+        
 
         function addButtons() { //to add the button to the netflix bar
             if (!document.querySelector("#translate-btn")) {

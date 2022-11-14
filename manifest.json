@@ -13,6 +13,7 @@
                 "popUpError.js",
                 "popUpSettings.js",
                 "subtitles.js",
+                "settings.js",
                 "translate.js",
                 "init.js"
             ],

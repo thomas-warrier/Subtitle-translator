@@ -62,7 +62,17 @@ function createpopUpSettings() { //to create the subssettingsPopUp
     const selectTo = document.getElementById('to-lang');
     selectTo.value = toLanguage;
     const selectExtLanguage = document.getElementById('extension-lang');
-    selectExtLanguage.value = extensionLanguage;
+    switch(extensionLanguage){
+        case langFr:
+            selectExtLanguage.value = "fr";
+            break;
+        case langEn:
+            selectExtLanguage.value = "en";
+            break;
+        default :
+            selectExtLanguage.value = "en" ;
+    }
+    
 
     const returnButton = document.querySelector(".return-icon")//when the user click on the return icon
     returnButton.addEventListener('click', (e) => {
@@ -95,7 +105,7 @@ function createpopUpSettings() { //to create the subssettingsPopUp
     })
 
     document.querySelector("#extension-lang").addEventListener('change', (e) => { //when the user change the extension language
-        selectExtLanguage(e.target.value);
+        setExtensionLanguage(e.target.value);
         chrome.storage.local.set({ "extensionLanguage": extensionLanguage });
     })
 }
