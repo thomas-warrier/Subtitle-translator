@@ -42,8 +42,8 @@ function createpopUpSettings() { //to create the subssettingsPopUp
         <label>${extensionLanguage.extensionLang}</label>
         <div id='select-option'>
             <select class='choice-option' name="extension-lang" id="extension-lang">
-                <option value="en">English</option>
-                <option value="fr">French</option>
+                <option value="en">${extensionLanguage.EN}</option>
+                <option value="fr">${extensionLanguage.FR}French</option>
             </select>
         </div>
     </div>
