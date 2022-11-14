@@ -26,12 +26,19 @@ var activePopUp = null; //current popup that is being displayed
                 toLanguage = r.toLanguage
             });
             chrome.storage.local.get("extensionLanguage", (r) => {
-                extensionLanguage = r.extensionLanguage
+                
+                setExtensionLanguage(r.extensionLanguage)
             });
-            if (extensionLanguage == null) { extensionLanguage = navigator.language }
-            console.log(extensionLanguage)
+            
+        }
+        // I restore the parameter of the user
+        restoreStorageVar();
+
+        function setExtensionLanguage(newLanguage){
+            if (newLanguage == null) { newLanguage = navigator.language }
+            console.log(extensionLanguage);
             //TODO put this function with switch case maybe in antoher file
-            switch (extensionLanguage) {
+            switch (newLanguage) {
                 case "fr":
                 case "fr-FR":
                     extensionLanguage = langFr;
@@ -45,11 +52,8 @@ var activePopUp = null; //current popup that is being displayed
                     //TODO put En in default
                     break;
             }
-            console.log(extensionLanguage)
+            console.log(extensionLanguage);
         }
-        // I restore the parameter of the user
-        restoreStorageVar();
-
 
         function addButtons() { //to add the button to the netflix bar
             if (!document.querySelector("#translate-btn")) {

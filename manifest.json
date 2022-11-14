@@ -7,13 +7,13 @@
         {
             "js": [
                 "waiter.js",
+                "lang.js",
                 "popUp.js",
                 "popUpTranslate.js",
                 "popUpError.js",
                 "popUpSettings.js",
                 "subtitles.js",
                 "translate.js",
-                "lang.js",
                 "init.js"
             ],
             "css": [

@@ -6,13 +6,13 @@
     popUp.className = "PopUpTranslate-Class"
 
     //TODO Afficher la langue de sous titrage actuelle
-    console.log(extensionLanguage);
+    console.log("---" + extensionLanguage);
     popUp.innerHTML = `
                     <div class='container-translation-ext'>
                         <div id='languages-container'>
-                            <div id='from-languages'><span lang='en'>Detected language</span></div>
+                            <div id='from-languages'><span lang='en'>${extensionLanguage[extensionLanguage.fromLanguage]}</span></div>
                             <div class="language-and-parameter">
-                                <div id='to-languages'>${extensionLanguage["FR"]}</div>
+                                <div id='to-languages'>${extensionLanguage[extensionLanguage.toLanguage]}</div>
                                 <div class='parameter-icon-to-context'><span class="icon"></span><a href="#"></a><span></span></div></div>
                             </div>
                         </div>

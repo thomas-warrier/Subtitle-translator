@@ -7,13 +7,11 @@ function createErrorPopUp() {
     popUpNoSub.innerHTML = `
             <div id='error-translation-container'>
                 <div id='top-container'>
-                    <span lang='fr'>Aucun Sous-Titres</span>
-                    <span lang='en'>No subtitles available</span>
+                    <span>${extensionLanguage.noSubTitle}</span>
                 </div>
                 <div id='bottom-container'>
                     <div id='no-subtitles'>
-                        <span lang='fr'>Aucun sous-titre disponible pour le moment</span>
-                        <span lang='en'>No subtitles available for now,please wait for the first subtitles</span>
+                        <span>${extensionLanguage.noSubMessage}</span>
                     </div>
                 </div>
             </div>

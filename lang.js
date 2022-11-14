@@ -4,11 +4,11 @@ const langFr={
     "source" : "Langage source",
     "target" : "Langage cible",
     "shortcut" : "Raccourci clavier",
-    "extension-lang" : "Langue de l'extension",
+    "extensionLang" : "Langue de l'extension",
     
     //Error PopUp
-    "noSub-Title" : "Aucun Sous-Titres",
-    "noSub-Message" : "Aucun sous-titre disponible pour le moment, veuiller attendre le premier sous-titre",
+    "noSubTitle" : "Aucun Sous-Titres",
+    "noSubMessage" : "Aucun sous-titre disponible pour le moment, veuiller attendre le premier sous-titre",
     
 
     //languages
@@ -22,11 +22,11 @@ const langEn={
     "source" : "Source language",
     "target" : "Target language",
     "shortcut" : "Key shortcut",
-    "extension-lang" : "Extension language",
+    "extensionLang" : "Extension language",
 
     //Error PopUp
-    "noSub-Title" : "No subtitles available",
-    "noSub-Message" : "No subtitles available for now, please wait for the first subtitles",
+    "noSubTitle" : "No subtitles available",
+    "noSubMessage" : "No subtitles available for now, please wait for the first subtitles",
 
 
     //languages

@@ -12,11 +12,11 @@ function createpopUpSettings() { //to create the subssettingsPopUp
             <div class='return-icon'><span class="icon"></span><a href="#"></a><span></span></div>
         </div>
 
-        <label class='title'>Paramètres</label>
+        <label class='title'>${extensionLanguage.parameter}</label>
     </div>
     <div>
         <div class='container-ext'> 
-            <label>Langages sources</label>
+            <label>${extensionLanguage.source}</label>
             <div id='select-option'>
                 <select class='choice-option' name="from-lang" id="from-lang">
                     <option value="EN">English</option>
@@ -25,7 +25,7 @@ function createpopUpSettings() { //to create the subssettingsPopUp
             </div>
         </div>
         <div class='container-ext'>
-            <label>Langages cible</label>
+            <label>${extensionLanguage.target}</label>
             <div id='select-option'>
                 <select class='choice-option' name="to-lang" id="to-lang">
                     <option value="EN">English</option>
@@ -35,15 +35,15 @@ function createpopUpSettings() { //to create the subssettingsPopUp
         </div>
     </div>
     <div class='container-ext'>
-            <label>Raccourcis clavier</label>
+            <label>${extensionLanguage.shortcut}</label>
             <input class='choice-option' type="text" id='shortcut-choice' value='${keyShortCut}' readonly>
     </div>
     <div class='container-ext' id='extension-languages'>
-        <label>Langue de l'extension</label>
+        <label>${extensionLanguage.extensionLang}</label>
         <div id='select-option'>
             <select class='choice-option' name="extension-lang" id="extension-lang">
-                <option value="English">English</option>
-                <option value="French">French</option>
+                <option value="en">English</option>
+                <option value="fr">French</option>
             </select>
         </div>
     </div>
@@ -59,7 +59,7 @@ function createpopUpSettings() { //to create the subssettingsPopUp
 
     const selectFrom = document.getElementById('from-lang'); //to set the selected value of every settings select
     selectFrom.value = fromLanguage;
-    const selectTo = document.getElementById('to-lang')
+    const selectTo = document.getElementById('to-lang');
     selectTo.value = toLanguage;
     const selectExtLanguage = document.getElementById('extension-lang');
     selectExtLanguage.value = extensionLanguage;
@@ -73,7 +73,7 @@ function createpopUpSettings() { //to create the subssettingsPopUp
     const choiceInput = document.querySelector("#shortcut-choice")//when the user click to change the shortcut
     choiceInput.addEventListener('focus', (e) => {
         choiceInput.addEventListener('keydown', (e) => {
-            e.stopPropagation() //to block the event on the document to open the popUp
+            e.stopPropagation(); //to block the event on the document to open the popUp
             const keyName = e.key;
             choiceInput.value = keyName; //display the selected key for the user
             keyShortCut = keyName; //set the shortCut to the key selected
@@ -86,16 +86,16 @@ function createpopUpSettings() { //to create the subssettingsPopUp
         fromLanguage = e.target.value;
         chrome.storage.local.set({
             "fromLanguage": fromLanguage
-        })
+        });
     })
 
     document.querySelector("#to-lang").addEventListener('change', (e) => { //when the user change the to language
         toLanguage = e.target.value;
-        chrome.storage.local.set({ "toLanguage": toLanguage })
+        chrome.storage.local.set({ "toLanguage": toLanguage });
     })
 
     document.querySelector("#extension-lang").addEventListener('change', (e) => { //when the user change the extension language
-        extensionLanguage = e.target.value;
-        chrome.storage.local.set({ "extensionLanguage": extensionLanguage })
+        selectExtLanguage(e.target.value);
+        chrome.storage.local.set({ "extensionLanguage": extensionLanguage });
     })
 }
