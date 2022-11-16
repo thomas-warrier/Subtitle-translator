@@ -10,9 +10,9 @@
     popUp.innerHTML = `
                     <div class='container-translation-ext'>
                         <div id='languages-container'>
-                            <div id='from-languages'><span lang='en'>${extensionLanguage[fromLanguage]}</span></div>
+                            <div id='from-languages'>${extensionLanguage.langs[fromLanguage]}</div>
                             <div class="language-and-parameter">
-                                <div id='to-languages'>${extensionLanguage[toLanguage]}</div>
+                                <div id='to-languages'>${extensionLanguage.langs[toLanguage]}</div>
                                 <div class='parameter-icon-to-context'><span class="icon"></span><a href="#"></a><span></span></div></div>
                             </div>
                         </div>

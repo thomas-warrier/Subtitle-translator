@@ -1,0 +1,8 @@
+def toUpperCode():
+    txt = "\"af\" : \"Afrikaans\"\n\"sq\" : \"Albanian\"\n\"ar\" : \"Arabic\"\n\"hy\" : \"Armenian\"\n\"az\" : \"Azerbaijani\"\n\"eu\" : \"Basque\"\n\"be\" : \"Belarusian\"\n\"bg\" : \"Bulgarian\"\n\"ca\" : \"Catalan\"\n\"zh-CN\" : \"Chinese (Simplified)\"\n\"zh-TW\" : \"Chinese (Traditional)\"\n\"hr\" : \"Croatian\"\n\"cs\" : \"Czech\"\n\"da\" : \"Danish\"\n\"nl\" : \"Dutch\"\n\"en\" : \"English\"\n\"et\" : \"Estonian\"\n\"tl\" : \"Filipino\"\n\"fi\" : \"Finnish\"\n\"fr\" : \"French\"\n\"gl\" : \"Galician\"\n\"ka\" : \"Georgian\"\n\"de\" : \"German\"\n\"el\" : \"Greek\"\n\"ht\" : \"Haitian Creole\"\n\"iw\" : \"Hebrew\"\n\"hi\" : \"Hindi\"\n\"hu\" : \"Hungarian\"\n\"is\" : \"Icelandic\"\n\"id\" : \"Indonesian\"\n\"ga\" : \"Irish\"\n\"it\" : \"Italian\"\n\"ja\" : \"Japanese\"\n\"ko\" : \"Korean\"\n\"lv\" : \"Latvian\"\n\"lt\" : \"Lithuanian\"\n\"mk\" : \"Macedonian\"\n\"ms\" : \"Malay\"\n\"mt\" : \"Maltese\"\n\"no\" : \"Norwegian\"\n\"fa\" : \"Persian\"\n\"pl\" : \"Polish\"\n\"pt\" : \"Portuguese\"\n\"ro\" : \"Romanian\"\n\"ru\" : \"Russian\"\n\"sr\" : \"Serbian\"\n\"sk\" : \"Slovak\"\n\"sl\" : \"Slovenian\"\n\"es\" : \"Spanish\"\n\"sw\" : \"Swahili\"\n\"sv\" : \"Swedish\"\n\"th\" : \"Thai\"\n\"tr\" : \"Turkish\"\n\"uk\" : \"Ukrainian\"\n\"ur\" : \"Urdu\"\n\"vi\" : \"Vietnamese\"\n\"cy\" : \"Welsh\"\n\"yi\" : \"Yiddish\""
+   
+    for line in  txt.split('\n'):
+        current = line.split("\"")
+        print("\""+(current[1]).upper()+"\"" +" : "+"\""+current[3]+"\""+",")
+
+toUpperCode()
