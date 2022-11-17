@@ -2,8 +2,19 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    color: white;
+    color: var(--text-color);
     font-family: Helvetica, sans-serif;
+}
+
+:root{
+    /*============ Couleurs ============*/
+
+    --primary-color: #131313;
+    --secondary-color: #262626;
+    --text-color: rgb(255, 255, 255);
+
+    /*============ Paddings ============*/
+    --text-padding: 15px;
 }
 
 .global-popUp {
@@ -12,14 +23,38 @@
     position: absolute;
     right: 30px;
     bottom: 95px;
-    min-width: 400px;
-    max-width: 400px;
     height: fit-content;
     display: flex;
     flex-direction: column;
-    background-color: #131313;
+    background-color: var(--primary-color);
 }
 
-#title-container {}
+/* ou est ce que ici je fais un classe flex row ?*/
 
-#content-container {}
+.title-container {
+    font-weight: bold;
+    font-size: 27px;
+    /*est ce que ici je met mon flex row ?*/
+    /*est ce que ici je met mon padding ?*/
+    background-color: var(--secondary-color);
+}
+
+.content-container {
+    font-weight: normal;
+    font-size: 19px;
+    background-color: var(--primary-color);
+    /*est ce que ici je met mon flex row ?*/
+    /*est ce que ici je met mon padding ?*/
+}
+
+.settings-component{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 15px;
+}
+
+.settings-component:hover{
+    background-color: var(--secondary-color);
+}

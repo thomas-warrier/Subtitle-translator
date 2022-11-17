@@ -1,3 +1,10 @@
+
+function generateLangOption(){
+    for ((key, value) in extensionLanguage.langs) {
+        `<option value="${key}">${value}</option>`
+    }
+}
+
 const langFr = {
     //popUpSettings
     "settings": {
@@ -19,7 +26,66 @@ const langFr = {
     "langs": {
         "detect": "Détecter la langue ",
         "FR": "Français",
-        "EN": "Anglais"
+        "EN": "Anglais",
+        "ES": "Espagnol",
+
+        "AF": "Afrikaans",
+        "SQ": "Albanais",
+        "AR": "Arabe",
+        "AR": "Arabic",
+        "HY": "Arménien",
+        "AZ": "Azerbaïdjanais",
+        "EU": "Basque",
+        "BE": "Biélorusse",
+        "BG": "Bulgare",
+        "CA": "Catalan",
+        "ZH-CN": "Chinois (simplifié)",
+        "ZH-TW": "Chinois (traditionnel)",
+        "HR": "Croate",
+        "CS": "Tchèque",
+        "DA": "Danois",
+        "NL": "Néerlandais",
+        "EN": "Anglais",
+        "ET": "Estonien",
+        "FI": "Finnois",
+        "FR": "Français",
+        "GL": "Galicien",
+        "KA": "Géorgien",
+        "DE": "Allemand",
+        "EL": "Grec",
+        "HT": "Créole haïtien",
+        "IW": "Hébreu",
+        "HI": "Hindi",
+        "HU": "Hongrois",
+        "IS": "Islandais",
+        "ID": "Indonésien",
+        "GA": "Irlandais",
+        "IT": "Italien",
+        "JA": "Japonais",
+        "KO": "Coréen",
+        "LV": "Letton",
+        "LT": "Lituanien",
+        "MK": "Macédonien",
+        "MS": "Malais",
+        "MT": "Maltais",
+        "NO": "Norvégien",
+        "FA": "Persan",
+        "PL": "Polonais",
+        "PT": "Portugais",
+        "RO": "Roumain",
+        "RU": "Russe",
+        "SR": "Serbe",
+        "SK": "Slovaque",
+        "SL": "Slovène",
+        "ES": "Espagnol",
+        "SV": "Suédois",
+        "TH": "Thaï",
+        "TR": "Turc",
+        "UK": "Ukrainien",
+        "UR": "Ourdou",
+        "VI": "Vietnamien",
+        "CY": "Gallois",
+        "YI": "Yiddish"
     }
 
 }
@@ -45,6 +111,8 @@ const langEn = {
         "detect": "Detect language",
         "FR": "French",
         "EN": "English",
+        "ES": "Spanish",
+
         "AF": "Afrikaans",
         "SQ": "Albanian",
         "AR": "Arabic",
@@ -62,7 +130,6 @@ const langEn = {
         "NL": "Dutch",
         "EN": "English",
         "ET": "Estonian",
-        "TL": "Filipino",
         "FI": "Finnish",
         "FR": "French",
         "GL": "Galician",
@@ -94,7 +161,6 @@ const langEn = {
         "SK": "Slovak",
         "SL": "Slovenian",
         "ES": "Spanish",
-        "SW": "Swahili",
         "SV": "Swedish",
         "TH": "Thai",
         "TR": "Turkish",

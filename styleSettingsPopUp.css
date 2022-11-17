@@ -26,8 +26,8 @@
     padding-right: 15px;   
 
 }
-.container-ext:hover,#shortcut-choice:focus{
-    background-color:#262626 ;
+#shortcut-choice:focus{
+    background-color:var(--secondary-color) ;
 }
 
 #extension-languages{
@@ -71,7 +71,6 @@
 
 #shortcut-choice{
     width: 80px;
-    max-width: fit-content;
 }
 
 
