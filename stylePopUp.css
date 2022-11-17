@@ -1,20 +1,11 @@
 /* CSS styles */
 #PopUpTranslate{
-    font-size: 1.5rem;
-    border-radius: 15%;
-    position: absolute;
-    right: 30px;
-    bottom: 95px;
     min-width: 700px;
     max-width: 700px;
     height: fit-content;
-    z-index: 100;
 }
 
-.container-translation-ext{
-    display: flex;
-    flex-direction: column;
-}
+
 #languages-container{
     display: flex;
     flex-direction: row;
@@ -24,8 +15,7 @@
     border-top-right-radius: 10px;
 }
 #from-languages,#to-languages{
-    color: white;
-    font-family: Helvetica, sans-serif ;
+    margin: 0;
     font-weight: bold;
     font-size: 27px;
     flex:1;
@@ -42,8 +32,6 @@
 }
 
 #from-subtitles,#translated-subtitles{
-    color: white;
-    font-family: Helvetica, sans-serif;
     font-weight: normal;
     font-size: 18.9px;
     border: 1.5px solid grey;

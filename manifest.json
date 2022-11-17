@@ -18,6 +18,7 @@
                 "init.js"
             ],
             "css": [
+                "main.css",
                 "styleButton.css",
                 "stylePopUp.css",
                 "styleErrorPopUp.css",

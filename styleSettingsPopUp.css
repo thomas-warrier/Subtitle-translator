@@ -1,17 +1,7 @@
 #PopUpSetting{
-    font-size: 1.5rem;
-    border-radius: 15%;
-    position: absolute;
-    right: 30px;
-    bottom: 95px;
     min-width: 400px;
     max-width: 400px;
     height: fit-content;
-    z-index: 100;
-}
-.container-setting-ext{
-    display: flex;
-    flex-direction: column;
 }
 
 #title-container{
@@ -27,8 +17,6 @@
 
 .container-ext{
     background-color: #131313;
-    color: white;
-    font-family: Helvetica, sans-serif;
     font-weight: normal;
     font-size: 18.9px;
     padding: 10px;
@@ -36,6 +24,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding-right: 15px;   
+
 }
 .container-ext:hover,#shortcut-choice:focus{
     background-color:#262626 ;
@@ -52,11 +41,10 @@
     border-radius: 3px;
     padding: 3px;
     width: 33px;
-    height:33px
-}
-#button-return{
+    height:33px;
     flex:1;
 }
+
 .title{
     flex:2;
 }

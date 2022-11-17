@@ -3,24 +3,22 @@
 
     const popUp = document.createElement("div");
     popUp.id = "PopUpTranslate"
-    popUp.className = "PopUpTranslate-Class"
+    popUp.className = "global-popUp"
 
     //TODO Afficher la langue de sous titrage actuelle
     console.log("---" + extensionLanguage);
     popUp.innerHTML = `
-                    <div class='container-translation-ext'>
                         <div id='languages-container'>
-                            <div id='from-languages'>${extensionLanguage.langs[fromLanguage]}</div>
+                            <h3 id='from-languages'>${extensionLanguage.langs[fromLanguage]}</h3>
                             <div class="language-and-parameter">
-                                <div id='to-languages'>${extensionLanguage.langs[toLanguage]}</div>
+                                <h3 id='to-languages'>${extensionLanguage.langs[toLanguage]}</h3>
                                 <div class='parameter-icon-to-context'><span class="icon"></span><a href="#"></a><span></span></div></div>
                             </div>
                         </div>
                         <div id='traduction-container'>
-                            <div id='from-subtitles'><span>${lastSub}</span></div>
-                            <div id='translated-subtitles'><span>${decodeURIComponent(translate)}</span></div>
+                            <p id='from-subtitles'>${lastSub}</p>
+                            <p id='translated-subtitles'>${decodeURIComponent(translate)}</p>
                         </div>
-                    </div>
                     `
     popUp.addEventListener('mouseenter', (e) => {
         if (deleteTimeout) {

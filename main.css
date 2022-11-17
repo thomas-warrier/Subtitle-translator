@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: white;
+    font-family: Helvetica, sans-serif;
+}
+
+.global-popUp {
+    font-size: 1.5rem;
+    border-radius: 15%;
+    position: absolute;
+    right: 30px;
+    bottom: 95px;
+    min-width: 400px;
+    max-width: 400px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: #131313;
+}
+
+#title-container {}
+
+#content-container {}

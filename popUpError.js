@@ -1,13 +1,13 @@
 // PopUp avec message d'erreur
 function createErrorPopUp() {
-    console.log("Error Pop Up")
     const popUpNoSub = document.createElement("div");
     popUpNoSub.id = "PopUpNoSubError"
-    popUpNoSub.className = "PopUpNoSubErrorClass"
+    popUpNoSub.className = "global-popUp"
     popUpNoSub.innerHTML = `
                 <h3 id='top-container'>${extensionLanguage.error.noSubTitle}</h3>
-                <h3 id='bottom-container'>${extensionLanguage.error.noSubMessage}</h3>
+                <p id='bottom-container'>${extensionLanguage.error.noSubMessage}</p>
             `
+
     popUpNoSub.addEventListener('mouseenter', (e) => { //when mouse enter in popup delete timeout of normal delete
         if (deleteTimeout) {
             clearTimeout(deleteTimeout);

@@ -2,52 +2,41 @@ function createpopUpSettings() { //to create the subssettingsPopUp
     setTimeBarVisible(false);
     const popUpSettings = document.createElement("div");
     popUpSettings.id = "PopUpSetting"
-    popUpSettings.className = "PopUpSetting-Class"
+    popUpSettings.className = "global-popUp"
 
     //TODO Afficher la langue de sous titrage actuelle
     popUpSettings.innerHTML = `
-    <div class='container-setting-ext'>
     <div class='container-ext' id='title-container'>
-        <div id='button-return'>
             <div class='return-icon'><span class="icon"></span><a href="#"></a><span></span></div>
-        </div>
-
-        <label class='title'>${extensionLanguage.parameter}</label>
+            <h3 class='title'>${extensionLanguage.settings.parameter}</h3>
     </div>
     <div>
         <div class='container-ext'> 
-            <label>${extensionLanguage.source}</label>
-            <div id='select-option'>
+            <p>${extensionLanguage.settings.source}</p>
                 <select class='choice-option' name="from-lang" id="from-lang">
                     <option value="EN">English</option>
                     <option value="FR">French</option>
                 </select>
-            </div>
         </div>
         <div class='container-ext'>
-            <label>${extensionLanguage.target}</label>
-            <div id='select-option'>
+            <p>${extensionLanguage.settings.target}</p>
                 <select class='choice-option' name="to-lang" id="to-lang">
                     <option value="EN">English</option>
                     <option value="FR">French</option>
                 </select>
-            </div>
         </div>
     </div>
     <div class='container-ext'>
-            <label>${extensionLanguage.shortcut}</label>
+            <p>${extensionLanguage.settings.shortcut}</p>
             <input class='choice-option' type="text" id='shortcut-choice' value='${keyShortCut}' readonly>
     </div>
     <div class='container-ext' id='extension-languages'>
-        <label>${extensionLanguage.extensionLang}</label>
-        <div id='select-option'>
+        <p>${extensionLanguage.settings.extensionLang}</p>
             <select class='choice-option' name="extension-lang" id="extension-lang">
                 <option value="en">${extensionLanguage.EN}</option>
                 <option value="fr">${extensionLanguage.FR}French</option>
             </select>
-        </div>
     </div>
-</div>
             `
     popUpSettings.addEventListener("click", (e) => { //to prevent from pause 
         e.stopPropagation();
@@ -62,17 +51,17 @@ function createpopUpSettings() { //to create the subssettingsPopUp
     const selectTo = document.getElementById('to-lang');
     selectTo.value = toLanguage;
     const selectExtLanguage = document.getElementById('extension-lang');
-    switch(extensionLanguage){
+    switch (extensionLanguage) {
         case langFr:
             selectExtLanguage.value = "fr";
             break;
         case langEn:
             selectExtLanguage.value = "en";
             break;
-        default :
-            selectExtLanguage.value = "en" ;
+        default:
+            selectExtLanguage.value = "en";
     }
-    
+
 
     const returnButton = document.querySelector(".return-icon")//when the user click on the return icon
     returnButton.addEventListener('click', (e) => {
