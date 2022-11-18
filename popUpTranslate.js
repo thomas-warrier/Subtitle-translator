@@ -8,16 +8,17 @@
     //TODO Afficher la langue de sous titrage actuelle
     console.log("---" + extensionLanguage);
     popUp.innerHTML = `
-                        <div id='languages-container'>
-                            <h3 id='from-languages'>${extensionLanguage.langs[fromLanguage]}</h3>
-                            <div class="language-and-parameter">
-                                <h3 id='to-languages'>${extensionLanguage.langs[toLanguage]}</h3>
-                                <div class='parameter-icon-to-context'><span class="icon"></span><a href="#"></a><span></span></div></div>
+                        <div class="title-container flex-row">
+                            <h3 class='title' id='from-languages'>${extensionLanguage.langs[fromLanguage]}</h3>
+                            <div class='flex-row flex'>
+                                <h3 class='flex title'>${extensionLanguage.langs[toLanguage]}</h3>
+                                <div class='icon-container' id='parameter-button'><span class="icon"></span><a href="#"></a><span></span></div></div>
+                                
                             </div>
                         </div>
-                        <div id='traduction-container'>
-                            <p id='from-subtitles'>${lastSub}</p>
-                            <p id='translated-subtitles'>${decodeURIComponent(translate)}</p>
+                        <div class='content-container flex-row'>
+                            <p class='subtitle' id='from-subtitles'>${lastSub}</p>
+                            <p class='subtitle'>${decodeURIComponent(translate)}</p>
                         </div>
                     `
     popUp.addEventListener('mouseenter', (e) => {
@@ -37,7 +38,7 @@
     //ajout dans le canva
     placeInCanva(popUp);
     setActivePopUp('#PopUpTranslate');
-    const parameterButton = document.querySelector(".parameter-icon-to-context")
+    const parameterButton = document.querySelector("#parameter-button")
     parameterButton.addEventListener('click', (e) => {
         deletePopUpInstant()
         createpopUpSettings()

@@ -6,36 +6,36 @@ function createpopUpSettings() { //to create the subssettingsPopUp
 
     //TODO Afficher la langue de sous titrage actuelle
     popUpSettings.innerHTML = `
-    <div class='container-ext' id='title-container'>
-            <div class='return-icon'><span class="icon"></span><a href="#"></a><span></span></div>
+    <div class='title-container flex-row'>
+            <div class='icon-container' id='return-button'><span class="icon"></span><a href="#"></a><span></span></div>
             <h3 class='title'>${extensionLanguage.settings.parameter}</h3>
     </div>
-    <div>
-        <div class='container-ext'> 
+    <div class='content-container'>
+        <div class='settings-component'> 
             <p>${extensionLanguage.settings.source}</p>
                 <select class='choice-option' name="from-lang" id="from-lang">
                     <option value="EN">English</option>
                     <option value="FR">French</option>
                 </select>
         </div>
-        <div class='container-ext'>
+        <div class='settings-component'>
             <p>${extensionLanguage.settings.target}</p>
                 <select class='choice-option' name="to-lang" id="to-lang">
                     <option value="EN">English</option>
                     <option value="FR">French</option>
                 </select>
         </div>
-    </div>
-    <div class='container-ext'>
-            <p>${extensionLanguage.settings.shortcut}</p>
-            <input class='choice-option' type="text" id='shortcut-choice' value='${keyShortCut}' readonly>
-    </div>
-    <div class='container-ext' id='extension-languages'>
-        <p>${extensionLanguage.settings.extensionLang}</p>
-            <select class='choice-option' name="extension-lang" id="extension-lang">
-                <option value="en">${extensionLanguage.EN}</option>
-                <option value="fr">${extensionLanguage.FR}French</option>
-            </select>
+        <div class='settings-component'>
+                <p>${extensionLanguage.settings.shortcut}</p>
+                <input class='choice-option' type="text" id='shortcut-choice' value='${keyShortCut}' readonly>
+        </div>
+        <div class='settings-component' id='extension-languages'>
+            <p>${extensionLanguage.settings.extensionLang}</p>
+                <select class='choice-option' name="extension-lang" id="extension-lang">
+                    <option value="en">${extensionLanguage.EN}</option>
+                    <option value="fr">${extensionLanguage.FR}French</option>
+                </select>
+        </div>
     </div>
             `
     popUpSettings.addEventListener("click", (e) => { //to prevent from pause 
@@ -63,7 +63,7 @@ function createpopUpSettings() { //to create the subssettingsPopUp
     }
 
 
-    const returnButton = document.querySelector(".return-icon")//when the user click on the return icon
+    const returnButton = document.querySelector("#return-button")//when the user click on the return icon
     returnButton.addEventListener('click', (e) => {
         deletePopUpInstant();
         createPopUp();

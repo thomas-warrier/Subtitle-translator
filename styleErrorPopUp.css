@@ -1,23 +1,11 @@
 #PopUpNoSubError{
-    border-radius: 10px;
     min-width: 500px;
     max-width: 500px;
 }
 
-#top-container{
-    background-color : #262626;
-    padding: 15px;
-    min-height: 28px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    font-weight: bold;
-    font-size: 27px;
-}
-#bottom-container{
+#bottom-error{
         justify-content: center;
-        min-height: 50px;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        padding: 15px;
+        min-height: 100px;
+        padding: 20px;
 }
 

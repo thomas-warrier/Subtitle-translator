@@ -1,9 +1,9 @@
 
-function generateLangOption(){
-    for ((key, value) in extensionLanguage.langs) {
-        `<option value="${key}">${value}</option>`
-    }
-}
+// function generateLangOption(){
+//     for ((key, value) in extensionLanguage.langs) {
+//         `<option value="${key}">${value}</option>`
+//     }
+// }
 
 const langFr = {
     //popUpSettings
@@ -89,6 +89,7 @@ const langFr = {
     }
 
 }
+
 const langEn = {
     //Settings PopUp
     "settings": {
@@ -97,7 +98,6 @@ const langEn = {
         "target": "Target language",
         "shortcut": "Key shortcut",
         "extensionLang": "Extension language"
-
     },
 
     //Error PopUp

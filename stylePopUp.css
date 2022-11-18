@@ -2,62 +2,29 @@
 #PopUpTranslate{
     min-width: 700px;
     max-width: 700px;
-    height: fit-content;
 }
 
-
-#languages-container{
-    display: flex;
-    flex-direction: row;
-    background-color : #262626;
-    padding: 15px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+#PopUpTranslate .content-container{
+    min-height: 10rem;
 }
 
-#from-languages,#to-languages{
-    flex:1;
-}
-
-#traduction-container{
-    display: flex;
-    display: row;
-    background-color: #131313;
-    min-height: 120px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    padding: 15px;
-}
-
-#from-subtitles,#translated-subtitles{
+.subtitle{
     border: 1.5px solid grey;
     border-radius: 7px;
     padding: 15px;
     flex: 1;
 }
-.language-and-parameter{
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-}
+
 #from-subtitles,#from-languages{
     margin-right: 20px;
+    flex: 1;
 }
 
-.parameter-icon-to-context{
-    border-radius: 3px;
-    padding: 3px;
-    width: 33px;
-    height: 33px;
-}
-.parameter-icon-to-context .icon {
+
+#parameter-button .icon {
     background: url(https://cdn.discordapp.com/attachments/840647610247282749/1033132957961048094/carbon_settings.svg) no-repeat;
     float: left;
     width: 30px;
     height: 30px;
-    align-items: flex-end;
 }
 
-.parameter-icon-to-context:hover {
-    background-color: #131313;
-}

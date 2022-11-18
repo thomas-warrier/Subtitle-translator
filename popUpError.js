@@ -4,8 +4,8 @@ function createErrorPopUp() {
     popUpNoSub.id = "PopUpNoSubError"
     popUpNoSub.className = "global-popUp"
     popUpNoSub.innerHTML = `
-                <h3 id='top-container'>${extensionLanguage.error.noSubTitle}</h3>
-                <p id='bottom-container'>${extensionLanguage.error.noSubMessage}</p>
+                <h3 class="title-container">${extensionLanguage.error.noSubTitle}</h3>
+                <p class="content-container" id='bottom-error'>${extensionLanguage.error.noSubMessage}</p>
             `
 
     popUpNoSub.addEventListener('mouseenter', (e) => { //when mouse enter in popup delete timeout of normal delete

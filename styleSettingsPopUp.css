@@ -4,74 +4,36 @@
     height: fit-content;
 }
 
-#title-container{
-    background-color:#262626 ;
-    font-size: 27px;
-    font-weight: bold;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
+#PopUpSetting .content-container{
+    padding: initial;
 }
 
-.container-ext{
-    background-color: #131313;
-    font-weight: normal;
-    font-size: 18.9px;
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-right: 15px;   
-
-}
 #shortcut-choice:focus{
     background-color:var(--secondary-color) ;
 }
 
-#extension-languages{
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-
-
-
-.return-icon{
-    border-radius: 3px;
-    padding: 3px;
-    width: 33px;
-    height:33px;
-    flex:1;
+#shortcut-choice{
+    width: 15rem;
 }
 
 .title{
     flex:2;
 }
-.return-icon .icon {
+#return-button .icon {
     background: url(https://cdn.discordapp.com/attachments/842494279900594216/1036298435080486963/eva_arrow-back-fill.svg) no-repeat;
     float: left;
     width: 30px;
     height: 30px;
-    align-items: flex-end;
 }
-.return-icon:hover{
-    background-color: #131313;
-}
+
 
 .choice-option{
-    background-color: #131313;
-    color: white;
-    font-family: Helvetica, sans-serif;
-    font-weight: normal;
-    font-size: 18.9px;
+    background-color: var(--primary-color);
     border-radius: 5px;
-    padding-right: 30px;
+    width: 15rem;
 }
 
-#shortcut-choice{
-    width: 80px;
-}
+
 
 
 

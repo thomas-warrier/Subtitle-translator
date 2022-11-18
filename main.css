@@ -1,11 +1,3 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    color: var(--text-color);
-    font-family: Helvetica, sans-serif;
-}
-
 :root{
     /*============ Couleurs ============*/
 
@@ -13,36 +5,62 @@
     --secondary-color: #262626;
     --text-color: rgb(255, 255, 255);
 
-    /*============ Paddings ============*/
-    --text-padding: 15px;
 }
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+
 
 .global-popUp {
     font-size: 1.5rem;
-    border-radius: 15%;
+
     position: absolute;
     right: 30px;
     bottom: 95px;
     height: fit-content;
+
     display: flex;
     flex-direction: column;
-    background-color: var(--primary-color);
+
+    color: var(--text-color);
+    font-family: Helvetica, sans-serif;
+    
+    
 }
 
-/* ou est ce que ici je fais un classe flex row ?*/
-
-.title-container {
+.flex{
+    flex:1;
+}
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+.title{
     font-weight: bold;
     font-size: 27px;
-    /*est ce que ici je met mon flex row ?*/
-    /*est ce que ici je met mon padding ?*/
+}
+.title-container {
     background-color: var(--secondary-color);
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-weight: bold;
+    font-size: 27px;
 }
 
 .content-container {
     font-weight: normal;
     font-size: 19px;
     background-color: var(--primary-color);
+    padding: 15px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     /*est ce que ici je met mon flex row ?*/
     /*est ce que ici je met mon padding ?*/
 }
@@ -57,4 +75,16 @@
 
 .settings-component:hover{
     background-color: var(--secondary-color);
+}
+
+.icon-container{
+    border-radius: 3px;
+    padding: 3px;
+    max-width: 33px;
+    min-height:33px;
+    flex:1;
+}
+
+.icon-container:hover{
+    background-color: var(--primary-color);
 }
