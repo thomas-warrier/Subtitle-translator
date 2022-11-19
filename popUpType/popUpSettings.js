@@ -10,7 +10,9 @@ function createpopUpSettings() { //to create the subssettingsPopUp
     //TODO Afficher la langue de sous titrage actuelle
     popUpSettings.innerHTML = `
     <div class='title-container flex-row'>
-            <div class='icon-container' id='return-button'><span class="icon"></span></div>
+            <div class="flex">
+                <div class='icon-container' id='return-button'><span class="icon"></span></div>
+            </div>
             <h3>${extensionLanguage.settings.parameter}</h3>
     </div>
     <div class='content-container'>
@@ -36,7 +38,7 @@ function createpopUpSettings() { //to create the subssettingsPopUp
             <p>${extensionLanguage.settings.extensionLang}</p>
                 <select class='choice-option' name="extension-lang" id="extension-lang">
                     <option value="en">${extensionLanguage.langs.EN}</option>
-                    <option value="fr">${extensionLanguage.langs.FR}French</option>
+                    <option value="fr">${extensionLanguage.langs.FR}</option>
                 </select>
         </div>
     </div>

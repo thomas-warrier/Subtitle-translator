@@ -55,7 +55,6 @@
                 padding: 3px;
                 max-width: 33px;
                 min-height:33px;
-                flex:1;
                 display: flex;
                 justify-content: center;
             }

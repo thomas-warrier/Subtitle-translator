@@ -9,20 +9,19 @@
                 "waiter.js",
                 "lang.js",
                 "popUpManager.js",
-                "popUpTranslate.js",
-                "popUpError.js",
-                "popUpSettings.js",
+                "/popUpType/popUpTranslate.js",
+                "/popUpType/popUpError.js",
+                "/popUpType/popUpSettings.js",
                 "subtitles.js",
-                "settings.js",
                 "translate.js",
                 "init.js"
             ],
             "css": [
-                "main.css",
-                "styleButton.css",
-                "stylePopUp.css",
-                "styleErrorPopUp.css",
-                "styleSettingsPopUp.css"
+                "/css/main.css",
+                "/css/styleButton.css",
+                "/css/styleTranslatePopUp.css",
+                "/css/styleErrorPopUp.css",
+                "/css/styleSettingsPopUp.css"
             ],
             "matches": [
                 "*://www.netflix.com/watch/*"
