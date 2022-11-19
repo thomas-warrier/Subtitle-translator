@@ -18,3 +18,5 @@ Faire apparaître une pop-up de traduction directement dans le lecteur Netflix e
 
 <img src="https://cdn.discordapp.com/attachments/842494279900594216/1043591699823333447/telechargement_1.jpeg"/>
 
+## Projet future
+pour l'instant je me concentre sur Netflix mais j'aimerais par la suite que mon extension fonctionne avec Amazon Prime Vidéo et Disney+
