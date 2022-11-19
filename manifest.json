@@ -8,7 +8,7 @@
             "js": [
                 "waiter.js",
                 "lang.js",
-                "popUp.js",
+                "popUpManager.js",
                 "popUpTranslate.js",
                 "popUpError.js",
                 "popUpSettings.js",
