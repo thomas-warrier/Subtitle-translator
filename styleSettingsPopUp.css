@@ -1,37 +1,55 @@
+/*============ Pop up settings look ============*/
 #PopUpSetting{
     min-width: 400px;
     max-width: 400px;
     height: fit-content;
 }
 
-#PopUpSetting .content-container{
-    padding: initial;
-}
+    #PopUpSetting .content-container{
+        padding: initial;
+    }
 
-#shortcut-choice:focus{
-    background-color:var(--secondary-color) ;
-}
+    #PopUpSetting .title{
+        flex: 2;
+    }
+    /*============ return button look ============*/
+    #return-button .icon {
+        background: url(https://cdn.discordapp.com/attachments/842494279900594216/1036298435080486963/eva_arrow-back-fill.svg) no-repeat;
+        float: left;
+        width: 30px;
+        height: 30px;
+    }
 
-#shortcut-choice{
-    width: 15rem;
-}
+    /*============ settings component look ============*/
+    .settings-component{
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-right: 15px;
+    }
+    
+    .settings-component:hover{
+        background-color: var(--secondary-color);
+    }
 
-.title{
-    flex:2;
-}
-#return-button .icon {
-    background: url(https://cdn.discordapp.com/attachments/842494279900594216/1036298435080486963/eva_arrow-back-fill.svg) no-repeat;
-    float: left;
-    width: 30px;
-    height: 30px;
-}
+        /*============ select look ============*/
+        .choice-option{
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            width: 15rem;
+        }
+
+        /*============ shortcut input look ============*/
+        #shortcut-choice{
+            width: 15rem;
+        }
+
+        #shortcut-choice:focus{
+            background-color:var(--secondary-color) ;
+        }
 
 
-.choice-option{
-    background-color: var(--primary-color);
-    border-radius: 5px;
-    width: 15rem;
-}
 
 
 

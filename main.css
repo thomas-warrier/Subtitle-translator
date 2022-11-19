@@ -1,5 +1,5 @@
 :root{
-    /*============ Couleurs ============*/
+    /*============ Colors ============*/
 
     --primary-color: #131313;
     --secondary-color: #262626;
@@ -16,7 +16,7 @@
 }
 
 
-
+/*============ Every pop up look ============*/
 .global-popUp {
     font-size: 1.5rem;
 
@@ -34,6 +34,44 @@
     
 }
 
+    /*============ title container and title look ============*/
+    .title{
+        font-weight: bold;
+        font-size: 27px;
+    }
+    .title-container {
+        background-color: var(--secondary-color);
+        padding: 15px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+            /*==icon container of button look in title container ==*/
+            .icon-container{
+                border-radius: 3px;
+                padding: 3px;
+                max-width: 33px;
+                min-height:33px;
+                flex:1;
+            }
+
+            .icon-container:hover{
+                background-color: var(--primary-color);
+            }
+
+
+
+    /*============ content container look ============*/
+    .content-container {
+        font-weight: normal;
+        font-size: 19px;
+        background-color: var(--primary-color);
+        padding: 15px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+
+/*============ flex properties ============*/
 .flex{
     flex:1;
 }
@@ -41,50 +79,6 @@
     display: flex;
     flex-direction: row;
 }
-.title{
-    font-weight: bold;
-    font-size: 27px;
-}
-.title-container {
-    background-color: var(--secondary-color);
-    padding: 15px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    font-weight: bold;
-    font-size: 27px;
-}
-
-.content-container {
-    font-weight: normal;
-    font-size: 19px;
-    background-color: var(--primary-color);
-    padding: 15px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    /*est ce que ici je met mon flex row ?*/
-    /*est ce que ici je met mon padding ?*/
-}
-
-.settings-component{
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
+.space-between{
     justify-content: space-between;
-    padding-right: 15px;
-}
-
-.settings-component:hover{
-    background-color: var(--secondary-color);
-}
-
-.icon-container{
-    border-radius: 3px;
-    padding: 3px;
-    max-width: 33px;
-    min-height:33px;
-    flex:1;
-}
-
-.icon-container:hover{
-    background-color: var(--primary-color);
 }

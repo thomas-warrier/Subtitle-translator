@@ -1,4 +1,7 @@
- // PopUp avec une traduction
+/**
+ * 
+ * @param {string} translate is the the text that just got translated by the api
+ */
  function createTranslatePopUp(translate) {
 
     const popUp = document.createElement("div");
@@ -10,8 +13,8 @@
     popUp.innerHTML = `
                         <div class="title-container flex-row">
                             <h3 class='title' id='from-languages'>${extensionLanguage.langs[fromLanguage]}</h3>
-                            <div class='flex-row flex'>
-                                <h3 class='flex title'>${extensionLanguage.langs[toLanguage]}</h3>
+                            <div class='flex-row flex space-between'>
+                                <h3 class='title'>${extensionLanguage.langs[toLanguage]}</h3>
                                 <div class='icon-container' id='parameter-button'><span class="icon"></span><a href="#"></a><span></span></div></div>
                                 
                             </div>
@@ -21,7 +24,7 @@
                             <p class='subtitle'>${decodeURIComponent(translate)}</p>
                         </div>
                     `
-    popUp.addEventListener('mouseenter', (e) => {
+    popUp.addEventListener('mouseenter', (e) => { 
         if (deleteTimeout) {
             clearTimeout(deleteTimeout);
         }
@@ -39,7 +42,7 @@
     placeInCanva(popUp);
     setActivePopUp('#PopUpTranslate');
     const parameterButton = document.querySelector("#parameter-button")
-    parameterButton.addEventListener('click', (e) => {
+    parameterButton.addEventListener('click', (e) => { //when the user click parameter button
         deletePopUpInstant()
         createpopUpSettings()
     })

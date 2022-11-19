@@ -1,3 +1,6 @@
+/**
+ * Display a settings pop and add all the listener on the settings possibilities
+ */
 function createpopUpSettings() { //to create the subssettingsPopUp
     setTimeBarVisible(false);
     const popUpSettings = document.createElement("div");
@@ -7,7 +10,7 @@ function createpopUpSettings() { //to create the subssettingsPopUp
     //TODO Afficher la langue de sous titrage actuelle
     popUpSettings.innerHTML = `
     <div class='title-container flex-row'>
-            <div class='icon-container' id='return-button'><span class="icon"></span><a href="#"></a><span></span></div>
+            <div class='icon-container flex' id='return-button'><span class="icon"></span><a href="#"></a><span></span></div>
             <h3 class='title'>${extensionLanguage.settings.parameter}</h3>
     </div>
     <div class='content-container'>
@@ -32,18 +35,17 @@ function createpopUpSettings() { //to create the subssettingsPopUp
         <div class='settings-component' id='extension-languages'>
             <p>${extensionLanguage.settings.extensionLang}</p>
                 <select class='choice-option' name="extension-lang" id="extension-lang">
-                    <option value="en">${extensionLanguage.EN}</option>
-                    <option value="fr">${extensionLanguage.FR}French</option>
+                    <option value="en">${extensionLanguage.langs.EN}</option>
+                    <option value="fr">${extensionLanguage.langs.FR}French</option>
                 </select>
         </div>
     </div>
             `
-    popUpSettings.addEventListener("click", (e) => { //to prevent from pause 
+    popUpSettings.addEventListener("click", (e) => { //to prevent pause in the netflix canva when parameter button is clicked
         e.stopPropagation();
     });
 
-    //ajout dans le canva
-    placeInCanva(popUpSettings);
+    placeInCanva(popUpSettings);  //place the settings popUp in the canva
     setActivePopUp("#PopUpSetting");
 
     const selectFrom = document.getElementById('from-lang'); //to set the selected value of every settings select
@@ -63,16 +65,16 @@ function createpopUpSettings() { //to create the subssettingsPopUp
     }
 
 
-    const returnButton = document.querySelector("#return-button")//when the user click on the return icon
-    returnButton.addEventListener('click', (e) => {
+    const returnButton = document.querySelector("#return-button")
+    returnButton.addEventListener('click', (e) => { //when the user click on the return icon
         deletePopUpInstant();
         createPopUp();
     })
 
-    const choiceInput = document.querySelector("#shortcut-choice")//when the user click to change the shortcut
-    choiceInput.addEventListener('focus', (e) => {
+    const choiceInput = document.querySelector("#shortcut-choice")
+    choiceInput.addEventListener('focus', (e) => { //when the user click to change the shortcut
         choiceInput.addEventListener('keydown', (e) => {
-            e.stopPropagation(); //to block the event on the document to open the popUp
+            e.stopPropagation(); //to prevent the event open popUp when you set the parameter
             const keyName = e.key;
             choiceInput.value = keyName; //display the selected key for the user
             keyShortCut = keyName; //set the shortCut to the key selected

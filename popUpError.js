@@ -1,10 +1,12 @@
-// PopUp avec message d'erreur
+/**
+ * this function display an error pop up and set it as the active pop up
+ */
 function createErrorPopUp() {
     const popUpNoSub = document.createElement("div");
     popUpNoSub.id = "PopUpNoSubError"
     popUpNoSub.className = "global-popUp"
     popUpNoSub.innerHTML = `
-                <h3 class="title-container">${extensionLanguage.error.noSubTitle}</h3>
+                <h3 class="title-container title">${extensionLanguage.error.noSubTitle}</h3>
                 <p class="content-container" id='bottom-error'>${extensionLanguage.error.noSubMessage}</p>
             `
 
@@ -19,6 +21,6 @@ function createErrorPopUp() {
     })
     placeInCanva(popUpNoSub);
 
-    setActivePopUp('#PopUpNoSubError');
+    setActivePopUp('#PopUpNoSubError'); 
 
 }
