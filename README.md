@@ -13,5 +13,8 @@ c'est tout a fait faisable mais il y a une possibilité de faire tout ça effica
 Faire apparaître une pop up de traduction directement dans le lecteur netflix et avoir la possibilité d'ouvrir cette pop up en activant un simple raccourci.
 
 ## Aperçu
+![téléchargement.jpeg](Read%20me%20ddef2e80de864af1a8257d8c0a3f4133/tlchargement.jpeg)
 
-![Alt text](C:\Users\twarr\Pictures\extension\téléchargement.jpeg)
+![téléchargement (1).jpeg](Read%20me%20ddef2e80de864af1a8257d8c0a3f4133/tlchargement_(1).jpeg)
+
+![téléchargement (2).jpeg](Read%20me%20ddef2e80de864af1a8257d8c0a3f4133/tlchargement_(2).jpeg)
