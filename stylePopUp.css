@@ -1,4 +1,5 @@
-/* CSS styles */
+
+/*============ Pop up translate look ============*/
 #PopUpTranslate{
     min-width: 700px;
     max-width: 700px;
@@ -7,7 +8,15 @@
 #PopUpTranslate .content-container{
     min-height: 10rem;
 }
+/*============ subtitle properties ============*/
+#parameter-button .icon {
+    background: url(https://cdn.discordapp.com/attachments/840647610247282749/1033132957961048094/carbon_settings.svg) no-repeat;
+    float: left;
+    width: 30px;
+    height: 30px;
+}
 
+/*============ subtitle properties ============*/
 .subtitle{
     border: 1.5px solid grey;
     border-radius: 7px;
@@ -21,10 +30,5 @@
 }
 
 
-#parameter-button .icon {
-    background: url(https://cdn.discordapp.com/attachments/840647610247282749/1033132957961048094/carbon_settings.svg) no-repeat;
-    float: left;
-    width: 30px;
-    height: 30px;
-}
+
 
