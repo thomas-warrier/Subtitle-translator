@@ -33,13 +33,17 @@
     
     
 }
-
-    /*============ title container and title look ============*/
-    .title{
+    .global-popUp p{
+        font-weight: normal;
+        font-size: 19px;
+    }
+    .global-popUp h3{
         font-weight: bold;
         font-size: 27px;
     }
-    .title-container {
+    
+    /*============ title container and title look ============*/
+    .global-popUp .title-container {
         background-color: var(--secondary-color);
         padding: 15px;
         border-top-left-radius: 10px;
@@ -52,6 +56,8 @@
                 max-width: 33px;
                 min-height:33px;
                 flex:1;
+                display: flex;
+                justify-content: center;
             }
 
             .icon-container:hover{
@@ -61,9 +67,8 @@
 
 
     /*============ content container look ============*/
-    .content-container {
-        font-weight: normal;
-        font-size: 19px;
+    
+    .global-popUp .content-container {
         background-color: var(--primary-color);
         padding: 15px;
         border-bottom-left-radius: 5px;

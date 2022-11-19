@@ -1,3 +1,7 @@
+/**
+ * get from the netflix html the current subtitles if they are available, the most recent otherwise.
+ * @returns the last subtitles available
+ */
 function getSubtitles() {
     var childrenExist = document.querySelector("div.player-timedtext-text-container > span"); //select the span where subtitles are contain (return null if there is no subtitles)
     if (childrenExist !== null) {//if a subtitle exist

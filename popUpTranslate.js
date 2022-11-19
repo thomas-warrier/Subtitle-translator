@@ -15,7 +15,7 @@
                             <h3 class='title' id='from-languages'>${extensionLanguage.langs[fromLanguage]}</h3>
                             <div class='flex-row flex space-between'>
                                 <h3 class='title'>${extensionLanguage.langs[toLanguage]}</h3>
-                                <div class='icon-container' id='parameter-button'><span class="icon"></span><a href="#"></a><span></span></div></div>
+                                <div class='icon-container' id='parameter-button'><span class="icon"></span></div>
                                 
                             </div>
                         </div>

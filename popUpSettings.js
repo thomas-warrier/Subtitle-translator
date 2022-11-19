@@ -2,7 +2,7 @@
  * Display a settings pop and add all the listener on the settings possibilities
  */
 function createpopUpSettings() { //to create the subssettingsPopUp
-    setTimeBarVisible(false);
+    setTimeBarInvisible(false);
     const popUpSettings = document.createElement("div");
     popUpSettings.id = "PopUpSetting"
     popUpSettings.className = "global-popUp"
@@ -10,8 +10,8 @@ function createpopUpSettings() { //to create the subssettingsPopUp
     //TODO Afficher la langue de sous titrage actuelle
     popUpSettings.innerHTML = `
     <div class='title-container flex-row'>
-            <div class='icon-container flex' id='return-button'><span class="icon"></span><a href="#"></a><span></span></div>
-            <h3 class='title'>${extensionLanguage.settings.parameter}</h3>
+            <div class='icon-container' id='return-button'><span class="icon"></span></div>
+            <h3>${extensionLanguage.settings.parameter}</h3>
     </div>
     <div class='content-container'>
         <div class='settings-component'> 
@@ -50,8 +50,10 @@ function createpopUpSettings() { //to create the subssettingsPopUp
 
     const selectFrom = document.getElementById('from-lang'); //to set the selected value of every settings select
     selectFrom.value = fromLanguage;
+
     const selectTo = document.getElementById('to-lang');
     selectTo.value = toLanguage;
+
     const selectExtLanguage = document.getElementById('extension-lang');
     switch (extensionLanguage) {
         case langFr:

@@ -6,11 +6,12 @@
 }
 
 #PopUpTranslate .content-container{
-    min-height: 10rem;
+    min-height: 15rem;
 }
-/*============ subtitle properties ============*/
+/*============ parameter button ============*/
 #parameter-button .icon {
     background: url(https://cdn.discordapp.com/attachments/840647610247282749/1033132957961048094/carbon_settings.svg) no-repeat;
+    background-position: center;
     float: left;
     width: 30px;
     height: 30px;

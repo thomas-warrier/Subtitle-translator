@@ -1,3 +1,8 @@
+/**
+ * 
+ * @param {string} selector is the selector of the element we want to wait
+ * @returns 
+ */
 function waitForElm(selector) {
     return new Promise(resolve => {
         if (document.querySelector(selector)) {

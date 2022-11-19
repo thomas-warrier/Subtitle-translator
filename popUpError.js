@@ -6,7 +6,7 @@ function createErrorPopUp() {
     popUpNoSub.id = "PopUpNoSubError"
     popUpNoSub.className = "global-popUp"
     popUpNoSub.innerHTML = `
-                <h3 class="title-container title">${extensionLanguage.error.noSubTitle}</h3>
+                <h3 class="title-container">${extensionLanguage.error.noSubTitle}</h3>
                 <p class="content-container" id='bottom-error'>${extensionLanguage.error.noSubMessage}</p>
             `
 
