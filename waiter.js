@@ -4,7 +4,7 @@
  * @returns 
  */
 function waitForElm(selector) {
-    return new Promise(resolve => {
+    return new Promise(resolve => { //a new promise that will be resolved if the query selector return something
         if (document.querySelector(selector)) {
             return resolve(document.querySelector(selector));
         }

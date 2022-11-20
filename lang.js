@@ -1,9 +1,15 @@
-
-// function generateLangOption(){
-//     for ((key, value) in extensionLanguage.langs) {
-//         `<option value="${key}">${value}</option>`
-//     }
-// }
+/**
+ * this function need to be used in a SELECT tag.
+ * it append all the language choice options to the SELECT tag.
+ * @returns a string with all of the possible languague choice
+ */
+function generateLangOption(){
+    let string
+    for (const [key, value] of Object.entries(extensionLanguage.langs)) {
+        string += (`<option value="${key}">${value}</option>`);
+      }
+      return string;
+}
 
 function setExtensionLanguage(newLanguage){
     if (newLanguage == null) { newLanguage = navigator.language }
