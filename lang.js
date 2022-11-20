@@ -3,25 +3,25 @@
  * it append all the language choice options to the SELECT tag.
  * @returns a string with all of the possible languague choice
  */
-function generateLangOption(){
+function generateLangOption() {
     let string
     for (const [key, value] of Object.entries(extensionLanguage.langs)) {
         string += (`<option value="${key}">${value}</option>`);
-      }
-      return string;
+    }
+    return string;
 }
 
-function setExtensionLanguage(newLanguage){
-    if (newLanguage == null) { newLanguage = navigator.language }
-    console.log(extensionLanguage);
+function setExtensionLanguage(newLanguage) {
+    if (newLanguage == null) {
+        newLanguage = navigator.language
+        if (newLanguage.length > 2) { newLanguage = navigator.language.substring(0, 1) } //if "en-GB" then substring to get "en"
+    }
+    console.log(newLanguage);
     //TODO put this function with switch case maybe in antoher file
     switch (newLanguage) {
         case "fr":
-        case "fr-FR":
             extensionLanguage = langFr;
             break;
-    
-        case "en-GB":
         case "en":
             extensionLanguage = langEn;
             break;

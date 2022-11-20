@@ -98,7 +98,7 @@ function createpopUpSettings() { //to create the subssettingsPopUp
     })
 
     document.querySelector("#extension-lang").addEventListener('change', (e) => { //when the user change the extension language
+        chrome.storage.local.set({ "extensionLanguage": e.target.value });
         setExtensionLanguage(e.target.value);
-        chrome.storage.local.set({ "extensionLanguage": extensionLanguage });
     })
 }

@@ -26,8 +26,8 @@ var activePopUp = null; //current popup that is being displayed
                 toLanguage = r.toLanguage
             });
             chrome.storage.local.get("extensionLanguage", (r) => {
-                
-                setExtensionLanguage(r.extensionLanguage)
+                console.log(r.extensionLanguage);
+                setExtensionLanguage(r.extensionLanguage);
             });
             
         }

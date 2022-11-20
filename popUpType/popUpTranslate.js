@@ -9,7 +9,6 @@
     popUp.className = "global-popUp"
 
     //TODO Afficher la langue de sous titrage actuelle
-    console.log("---" + extensionLanguage);
     popUp.innerHTML = `
                         <div class="title-container flex-row">
                             <h3 class='title' id='from-languages'>${extensionLanguage.langs[fromLanguage]}</h3>

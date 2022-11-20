@@ -1,5 +1,5 @@
 /**
- * this function display an error pop up and set it as the active pop up
+ * this function create an error pop up and set it as the active pop up
  */
 function createErrorPopUp() {
     const popUpNoSub = document.createElement("div");
