@@ -11,7 +11,7 @@ function createPopUp() {
         setTimeBarInvisible(true);
         if (sub) {
             //TODO Manage lang preferences
-            translateText(sub, 'EN', 'FR', (translate) => {
+            translateText(sub, fromLanguage, toLanguage, (translate) => {
                 createTranslatePopUp(translate)
                 console.log("création d'une div popUP")
             });

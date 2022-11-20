@@ -94,6 +94,7 @@ function createpopUpSettings() { //to create the subssettingsPopUp
 
     document.querySelector("#to-lang").addEventListener('change', (e) => { //when the user change the to language
         toLanguage = e.target.value;
+        console.log(toLanguage);
         chrome.storage.local.set({ "toLanguage": toLanguage });
     })
 
