@@ -48,6 +48,24 @@ function createpopUpSettings() { //to create the subssettingsPopUp
     placeInCanva(popUpSettings);  //place the settings popUp in the canva
     setActivePopUp("#PopUpSetting");
 
+    setListenerOfSelect();
+
+    const returnButton = document.querySelector("#return-button")
+    returnButton.addEventListener('click', (e) => { //when the user click on the return icon
+        deletePopUpInstant();
+        createPopUp();
+    })
+
+    setListenerChoiceShortcut();
+
+    setValueOfParameterVar();
+    
+}
+
+/**
+ * Set listeners for the select tag of settings pop up
+ */
+function setListenerOfSelect(){
     const selectFrom = document.getElementById('from-lang'); //to set the selected value of every settings select
     selectFrom.value = fromLanguage;
 
@@ -65,26 +83,12 @@ function createpopUpSettings() { //to create the subssettingsPopUp
         default:
             selectExtLanguage.value = "en";
     }
+}
 
-
-    const returnButton = document.querySelector("#return-button")
-    returnButton.addEventListener('click', (e) => { //when the user click on the return icon
-        deletePopUpInstant();
-        createPopUp();
-    })
-
-    const choiceInput = document.querySelector("#shortcut-choice")
-    choiceInput.addEventListener('focus', (e) => { //when the user click to change the shortcut
-        choiceInput.addEventListener('keydown', (e) => {
-            e.stopPropagation(); //to prevent the event open popUp when you set the parameter
-            const keyName = e.key;
-            choiceInput.value = keyName; //display the selected key for the user
-            keyShortCut = keyName; //set the shortCut to the key selected
-            chrome.storage.local.set({ "keyShortCut": keyShortCut });
-            choiceInput.blur();//unfocus the input when key is selected
-        });
-    });
-
+/**
+ * Set the values of variables when a setting undergo a change of state
+ */
+function setValueOfParameterVar(){
     document.querySelector("#from-lang").addEventListener('change', (e) => { //when the user change the from language
         fromLanguage = e.target.value;
         chrome.storage.local.set({
@@ -102,4 +106,21 @@ function createpopUpSettings() { //to create the subssettingsPopUp
         chrome.storage.local.set({ "extensionLanguage": e.target.value });
         setExtensionLanguage(e.target.value);
     })
+}
+
+/**
+ * set a listener on the key shorcut input
+ */
+function setListenerChoiceShortcut(){
+    const choiceInput = document.querySelector("#shortcut-choice")
+    choiceInput.addEventListener('focus', (e) => { //when the user click to change the shortcut
+        choiceInput.addEventListener('keydown', (e) => {
+            e.stopPropagation(); //to prevent the event open popUp when you set the parameter
+            const keyName = e.key;
+            choiceInput.value = keyName; //display the selected key for the user
+            keyShortCut = keyName; //set the shortCut to the key selected
+            chrome.storage.local.set({ "keyShortCut": keyShortCut });
+            choiceInput.blur();//unfocus the input when key is selected
+        });
+    });
 }
