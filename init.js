@@ -16,20 +16,10 @@ var activePopUp = null; //current popup that is being displayed
 
 
         function restoreStorageVar() {
-            chrome.storage.local.get("keyShortCut", (r) => {
-                keyShortCut = r.keyShortCut
-            });
-            chrome.storage.local.get("fromLanguage", (r) => {
-                fromLanguage = r.fromLanguage
-            });
-            chrome.storage.local.get("toLanguage", (r) => {
-                toLanguage = r.toLanguage
-            });
-            chrome.storage.local.get("extensionLanguage", (r) => {
-                console.log(r.extensionLanguage);
-                setExtensionLanguage(r.extensionLanguage);
-            });
-            
+            keyShortCut = localStorage.getItem('keyShortCut')
+            fromLanguage = localStorage.getItem('fromLanguage');
+            toLanguage = localStorage.getItem('toLanguage');
+            setExtensionLanguage(localStorage.getItem('extensionLanguage'));
         }
         // I restore the parameter of the user
         restoreStorageVar();

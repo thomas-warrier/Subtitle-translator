@@ -59,13 +59,13 @@ function createpopUpSettings() { //to create the subssettingsPopUp
     setListenerChoiceShortcut();
 
     setValueOfParameterVar();
-    
+
 }
 
 /**
  * Set listeners for the select tag of settings pop up
  */
-function setListenerOfSelect(){
+function setListenerOfSelect() {
     const selectFrom = document.getElementById('from-lang'); //to set the selected value of every settings select
     selectFrom.value = fromLanguage;
 
@@ -88,22 +88,20 @@ function setListenerOfSelect(){
 /**
  * Set the values of variables when a setting undergo a change of state
  */
-function setValueOfParameterVar(){
+function setValueOfParameterVar() {
     document.querySelector("#from-lang").addEventListener('change', (e) => { //when the user change the from language
         fromLanguage = e.target.value;
-        chrome.storage.local.set({
-            "fromLanguage": fromLanguage
-        });
+        localStorage.setItem("fromLanguage", fromLanguage);
     })
 
     document.querySelector("#to-lang").addEventListener('change', (e) => { //when the user change the to language
         toLanguage = e.target.value;
         console.log(toLanguage);
-        chrome.storage.local.set({ "toLanguage": toLanguage });
+        localStorage.setItem("toLanguage", toLanguage);
     })
 
     document.querySelector("#extension-lang").addEventListener('change', (e) => { //when the user change the extension language
-        chrome.storage.local.set({ "extensionLanguage": e.target.value });
+        localStorage.setItem("extensionLanguage", e.target.value);
         setExtensionLanguage(e.target.value);
     })
 }
@@ -111,7 +109,7 @@ function setValueOfParameterVar(){
 /**
  * set a listener on the key shorcut input
  */
-function setListenerChoiceShortcut(){
+function setListenerChoiceShortcut() {
     const choiceInput = document.querySelector("#shortcut-choice")
     choiceInput.addEventListener('focus', (e) => { //when the user click to change the shortcut
         choiceInput.addEventListener('keydown', (e) => {
@@ -119,7 +117,7 @@ function setListenerChoiceShortcut(){
             const keyName = e.key;
             choiceInput.value = keyName; //display the selected key for the user
             keyShortCut = keyName; //set the shortCut to the key selected
-            chrome.storage.local.set({ "keyShortCut": keyShortCut });
+            localStorage.setItem("keyShortCut", keyShortCut);
             choiceInput.blur();//unfocus the input when key is selected
         });
     });
