@@ -54,31 +54,31 @@ var activePopUp = null; //current popup that is being displayed
                     if (mutation.attributeName === 'class') {
                         if (selector.classList.contains("active")) { //we have to add the button every time that the statusbar of the series is displayed
 
-                            addButtons()
+                            addButtons();
                         }
                     }
                 })
             }
 
-            const mutationObserver = new MutationObserver(callback)
+            const mutationObserver = new MutationObserver(callback);
 
-            mutationObserver.observe(selector, { attributes: true })
+            mutationObserver.observe(selector, { attributes: true });
         });
 
         document.addEventListener('keydown', (e) => {
             const keyName = e.key; //return a string of the name of the key pressed
             if (keyName === keyShortCut) { //if its the right key pressed
-                console.log("good key")
+                console.log("good key");
                 const canva = document.querySelector('.ltr-omkt8s');
-                canva.click()
+                canva.click();
                 if (!popUpState) {
-                    popUpState = true
+                    popUpState = true;
                     createPopUp();
-                    setTimeBarVisible(true);
+                    setTimeBarInvisible(true);
                 } else {
-                    popUpState = false
+                    popUpState = false;
                     removeActivePopUp();
-                    setTimeBarVisible(false);
+                    setTimeBarInvisible(false);
                 }
             }
         })
