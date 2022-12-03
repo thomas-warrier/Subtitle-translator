@@ -52,7 +52,7 @@ const langFr = {
 
     //languages
     "langs": {
-        "detect": "Détecter la langue ",
+        "auto": "Détecter la langue ",
         "FR": "Français",
         "EN": "Anglais",
         "ES": "Espagnol",
@@ -136,7 +136,7 @@ const langEn = {
 
     //languages
     "langs": {
-        "detect": "Detect language",
+        "auto": "Detect language",
         "FR": "French",
         "EN": "English",
         "ES": "Spanish",
