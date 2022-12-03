@@ -3,14 +3,14 @@
     background-color: transparent;
     background-size: cover;
     border: none;
-    width: 40px;
-    height: 40px;
+    width: 4.5rem;
+    height: 4.5rem;
     
     
 }
 #translate-btn:hover{
-    width: 45px;
-    height: 45px;
+    width: 5rem;
+    height: 5rem;
     transition: 0.15s;
     translate: (-5px,-5px) ;
 }
