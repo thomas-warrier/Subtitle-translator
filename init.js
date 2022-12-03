@@ -16,10 +16,10 @@ var activePopUp = null; //current popup that is being displayed
 
 
         function restoreStorageVar() {
-            keyShortCut = localStorage.getItem('keyShortCut')
-            fromLanguage = localStorage.getItem('fromLanguage');
-            toLanguage = localStorage.getItem('toLanguage');
-            setExtensionLanguage(localStorage.getItem('extensionLanguage'));
+            if(localStorage.getItem('keyShortCut')!=null){keyShortCut = localStorage.getItem('keyShortCut')};
+            if(localStorage.getItem('fromLanguage')!=null){fromLanguage = localStorage.getItem('fromLanguage')};
+            if(localStorage.getItem('toLanguage')!=null){toLanguage = localStorage.getItem('toLanguage')};
+            if(localStorage.getItem('extensionLanguage')!=null){setExtensionLanguage(localStorage.getItem('extensionLanguage'))};
         }
         // I restore the parameter of the user
         restoreStorageVar();
@@ -53,7 +53,6 @@ var activePopUp = null; //current popup that is being displayed
                 mutationsList.forEach(mutation => {
                     if (mutation.attributeName === 'class') {
                         if (selector.classList.contains("active")) { //we have to add the button every time that the statusbar of the series is displayed
-
                             addButtons();
                         }
                     }
