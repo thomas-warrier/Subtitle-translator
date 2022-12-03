@@ -5,8 +5,8 @@ var deleteTimeout = null; //contain the timer of the popUp
 var extensionLanguage = null; //to get the navigator language
 var keyShortCut = 'h' //the short cut to open or close popUp
 var popUpState = false //popUp translate can be open or close
-var fromLanguage = null;
-var toLanguage = null;
+var fromLanguage = "auto";
+var toLanguage = "FR";
 var activePopUp = null; //current popup that is being displayed
 (
 
@@ -19,7 +19,7 @@ var activePopUp = null; //current popup that is being displayed
             if(localStorage.getItem('keyShortCut')!=null){keyShortCut = localStorage.getItem('keyShortCut')};
             if(localStorage.getItem('fromLanguage')!=null){fromLanguage = localStorage.getItem('fromLanguage')};
             if(localStorage.getItem('toLanguage')!=null){toLanguage = localStorage.getItem('toLanguage')};
-            if(localStorage.getItem('extensionLanguage')!=null){setExtensionLanguage(localStorage.getItem('extensionLanguage'))};
+            setExtensionLanguage(localStorage.getItem('extensionLanguage'));
         }
         // I restore the parameter of the user
         restoreStorageVar();
