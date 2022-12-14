@@ -14,19 +14,26 @@ async function translateText(subtitles, sourceLang, targetLang, callback) {
                 target: targetLang.toLowerCase()
             }),
             headers: { "Content-Type": "application/json" }
-        }).then(res => res.json()
-        ).then(data => {
-            console.log(data);
-            translated = true;
-            lastSubTranslated = data.translatedText;
-            console.log('Traduction : ', lastSubTranslated);
-            callback(lastSubTranslated);
-            return;
-
-            //pas besoin de rappeler le callback, aucun element sera afficher dans ce cas
-            
+        }).then(res => {
+            if(!res.ok){
+                throw new Error(`Error during request no response from server : ${res.responseStatus}`);
+            }
+            res.json().then(data => {
+                console.log(data);
+                translated = true;
+                lastSubTranslated = data.translatedText;
+                console.log('Traduction : ', lastSubTranslated);
+                callback(lastSubTranslated);
+                return;
+    
+                //pas besoin de rappeler le callback, aucun element sera afficher dans ce cas
+    
+            })
+        }).catch((error)=>{
+            console.log(error);
         })
-        console.log("Error during request no response from server : ", res.responseStatus);
+            
+
     }
     callback(lastSubTranslated);
 }
