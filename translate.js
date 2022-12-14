@@ -4,6 +4,8 @@
 
 async function translateText(subtitles, sourceLang, targetLang, callback) {
     if (!translated) {
+        lastSubTranslated = "loading..."
+        callback(lastSubTranslated);
         fetch("https://translate.argosopentech.com/translate", {
             method: "POST",
             body: JSON.stringify({
@@ -22,8 +24,9 @@ async function translateText(subtitles, sourceLang, targetLang, callback) {
             return;
 
             //pas besoin de rappeler le callback, aucun element sera afficher dans ce cas
-            console.log("Error during request no response from server : ", data.responseStatus);
+            
         })
+        console.log("Error during request no response from server : ", res.responseStatus);
     }
     callback(lastSubTranslated);
 }
