@@ -2,7 +2,7 @@
  * 
  * @param {string} translate is the the text that just got translated by the api
  */
- function createTranslatePopUp(translate) {
+function createTranslatePopUp(translate,sub) {
 
     const popUp = document.createElement("div");
     popUp.id = "PopUpTranslate"
@@ -19,14 +19,15 @@
                             </div>
                         </div>
                         <div class='content-container flex-row'>
-                            <p class='subtitle' id='from-subtitles'>${lastSub}</p>
+                            <p class='subtitle' id='from-subtitles'>${sub}</p>
                             <p class='subtitle'>${decodeURIComponent(translate)}</p>
                         </div>
                     `
-    popUp.addEventListener('mouseenter', (e) => { 
+    popUp.addEventListener('mouseenter', (e) => {
         if (deleteTimeout) {
             clearTimeout(deleteTimeout);
         }
+
     });
 
     popUp.addEventListener('mouseleave', (e) => {

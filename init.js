@@ -5,8 +5,8 @@ var deleteTimeout = null; //contain the timer of the popUp
 var extensionLanguage = null; //to get the navigator language
 var keyShortCut = 'h' //the short cut to open or close popUp
 var popUpState = false //popUp translate can be open or close
-var fromLanguage = null;
-var toLanguage = null;
+var fromLanguage = "auto";
+var toLanguage = "FR";
 var activePopUp = null; //current popup that is being displayed
 (
 
@@ -16,9 +16,9 @@ var activePopUp = null; //current popup that is being displayed
 
 
         function restoreStorageVar() {
-            keyShortCut = localStorage.getItem('keyShortCut')
-            fromLanguage = localStorage.getItem('fromLanguage');
-            toLanguage = localStorage.getItem('toLanguage');
+            if(localStorage.getItem('keyShortCut')!=null){keyShortCut = localStorage.getItem('keyShortCut')};
+            if(localStorage.getItem('fromLanguage')!=null){fromLanguage = localStorage.getItem('fromLanguage')};
+            if(localStorage.getItem('toLanguage')!=null){toLanguage = localStorage.getItem('toLanguage')};
             setExtensionLanguage(localStorage.getItem('extensionLanguage'));
         }
         // I restore the parameter of the user
@@ -49,12 +49,11 @@ var activePopUp = null; //current popup that is being displayed
             console.log('Player is ready');
             addButtons() //then we can add the button to the canva
             var selector = document.querySelector(".ltr-omkt8s")
-            function callback(mutationsList, observer) {
+            function callback(mutationsList) {
                 mutationsList.forEach(mutation => {
                     if (mutation.attributeName === 'class') {
                         if (selector.classList.contains("active")) { //we have to add the button every time that the statusbar of the series is displayed
-
-                            addButtons();
+                            addButtons();  
                         }
                     }
                 })
@@ -63,8 +62,12 @@ var activePopUp = null; //current popup that is being displayed
             const mutationObserver = new MutationObserver(callback);
 
             mutationObserver.observe(selector, { attributes: true });
+            setSubtitlesObserver();
         });
 
+        
+
+        
         document.addEventListener('keydown', (e) => {
             const keyName = e.key; //return a string of the name of the key pressed
             if (keyName === keyShortCut) { //if its the right key pressed

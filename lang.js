@@ -3,9 +3,9 @@
  * it append all the language choice options to the SELECT tag.
  * @returns a string with all of the possible languague choice
  */
-function generateLangOption() {
+function generateLangOption(startIndex) {
     let string
-    for (const [key, value] of Object.entries(extensionLanguage.langs)) {
+    for (const [key, value] of Object.entries(extensionLanguage.langs).slice(startIndex)) {
         string += (`<option value="${key}">${value}</option>`);
     }
     return string;
@@ -52,7 +52,7 @@ const langFr = {
 
     //languages
     "langs": {
-        "detect": "Détecter la langue ",
+        "auto": "Détecter la langue ",
         "FR": "Français",
         "EN": "Anglais",
         "ES": "Espagnol",
@@ -136,7 +136,7 @@ const langEn = {
 
     //languages
     "langs": {
-        "detect": "Detect language",
+        "auto": "Detect language",
         "FR": "French",
         "EN": "English",
         "ES": "Spanish",

@@ -19,13 +19,13 @@ function createpopUpSettings() { //to create the subssettingsPopUp
         <div class='settings-component'> 
             <p>${extensionLanguage.settings.source}</p>
                 <select class='choice-option' name="from-lang" id="from-lang">
-                    ${generateLangOption()}
+                    ${generateLangOption(0)}
                 </select>
         </div>
         <div class='settings-component'>
             <p>${extensionLanguage.settings.target}</p>
                 <select class='choice-option' name="to-lang" id="to-lang">
-                    ${generateLangOption()}
+                    ${generateLangOption(1)}
                 </select>
         </div>
         <div class='settings-component'>

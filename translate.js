@@ -1,17 +1,37 @@
-function translateText(subtitles, fromLanguage, toLanguage, callback) {
+
+
+
+
+async function translateText(subtitles, sourceLang, targetLang, callback) {
     if (!translated) {
-        let apiUrl = `https://api.mymemory.translated.net/get?q=${subtitles}&langpair=${fromLanguage}|${toLanguage}&de=twarrier69@gmail.com`;
-        fetch(apiUrl).then(res => res.json()).then(data => {
-            if (data.responseStatus == 200) {
-                translated = true;
-                lastSubTranslated = data.responseData.translatedText;
-                console.log('Traduction : ', lastSubTranslated);
-                callback(lastSubTranslated);
-                return;
+        lastSubTranslated = "loading..."
+        callback(lastSubTranslated,subtitles);
+        fetch("https://translate.argosopentech.com/translate", {
+            method: "POST",
+            body: JSON.stringify({
+                q: subtitles,
+                source: sourceLang.toLowerCase(),
+                target: targetLang.toLowerCase()
+            }),
+            headers: { "Content-Type": "application/json" }
+        }).then(res => {
+            if(!res.ok){
+                throw new Error(`Error during request no response from server : ${res.responseStatus}`);
             }
+            res.json().then(data => {
+                console.log(data);
+                translated = true;
+                lastSubTranslated = data.translatedText;
+                console.log('Traduction : ', lastSubTranslated);
+                callback(lastSubTranslated,subtitles);
+                return;
+            })
+        }).catch((error)=>{
             //pas besoin de rappeler le callback, aucun element sera afficher dans ce cas
-            console.log('Erreur durant la requete : ', data.responseStatus);
-        });
+            console.log(error);
+        })
+            
+
     }
-    callback(lastSubTranslated);
+    callback(lastSubTranslated,subtitles);
 }

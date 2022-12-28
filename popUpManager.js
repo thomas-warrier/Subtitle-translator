@@ -7,13 +7,13 @@
 function createPopUp() {
     //if there is no popUp of translate and no popUp of error then you can create a popUp
     if (!document.getElementById('PopUpTranslate') && !document.getElementById('PopUpNoSubError')) {
-        const sub = getSubtitles();
+        const sub = lastSub;
+        console.log(lastSub);
         setTimeBarInvisible(true);
         if (sub) {
             //TODO Manage lang preferences
-            translateText(sub, fromLanguage, toLanguage, (translate) => {
-                createTranslatePopUp(translate)
-                console.log("création d'une div popUP")
+            translateText(sub, fromLanguage, toLanguage, (translate,sub) => {
+                createTranslatePopUp(translate,sub);
             });
         }
         //mean there is no subtitles to display
