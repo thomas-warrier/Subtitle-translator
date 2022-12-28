@@ -5,7 +5,7 @@
 async function translateText(subtitles, sourceLang, targetLang, callback) {
     if (!translated) {
         lastSubTranslated = "loading..."
-        callback(lastSubTranslated);
+        callback(lastSubTranslated,subtitles);
         fetch("https://translate.argosopentech.com/translate", {
             method: "POST",
             body: JSON.stringify({
@@ -23,17 +23,15 @@ async function translateText(subtitles, sourceLang, targetLang, callback) {
                 translated = true;
                 lastSubTranslated = data.translatedText;
                 console.log('Traduction : ', lastSubTranslated);
-                callback(lastSubTranslated);
+                callback(lastSubTranslated,subtitles);
                 return;
-    
-                //pas besoin de rappeler le callback, aucun element sera afficher dans ce cas
-    
             })
         }).catch((error)=>{
+            //pas besoin de rappeler le callback, aucun element sera afficher dans ce cas
             console.log(error);
         })
             
 
     }
-    callback(lastSubTranslated);
+    callback(lastSubTranslated,subtitles);
 }
