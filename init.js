@@ -49,11 +49,11 @@ var activePopUp = null; //current popup that is being displayed
             console.log('Player is ready');
             addButtons() //then we can add the button to the canva
             var selector = document.querySelector(".ltr-omkt8s")
-            function callback(mutationsList, observer) {
+            function callback(mutationsList) {
                 mutationsList.forEach(mutation => {
                     if (mutation.attributeName === 'class') {
                         if (selector.classList.contains("active")) { //we have to add the button every time that the statusbar of the series is displayed
-                            addButtons();
+                            addButtons();  
                         }
                     }
                 })
@@ -62,8 +62,12 @@ var activePopUp = null; //current popup that is being displayed
             const mutationObserver = new MutationObserver(callback);
 
             mutationObserver.observe(selector, { attributes: true });
+            setSubtitlesObserver();
         });
 
+        
+
+        
         document.addEventListener('keydown', (e) => {
             const keyName = e.key; //return a string of the name of the key pressed
             if (keyName === keyShortCut) { //if its the right key pressed
