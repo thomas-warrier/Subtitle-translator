@@ -25,7 +25,9 @@ async function translateText(subtitles, sourceLang, targetLang, callback) {
                 console.log('Traduction : ', lastSubTranslated);
                 callback(lastSubTranslated,subtitles);
                 return;
-            })
+            }).catch(error => {
+                console.error(error);
+              });
         }).catch((error)=>{
             //pas besoin de rappeler le callback, aucun element sera afficher dans ce cas
             console.log(error);
