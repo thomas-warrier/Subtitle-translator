@@ -68,6 +68,20 @@ var activePopUp = null; //current popup that is being displayed
           
           onDomIsRendered(".ltr-omkt8s").then(function(){
             console.log('Player is ready');
+            var selector = document.querySelector(".ltr-omkt8s")
+            function callback(mutationsList) {
+                mutationsList.forEach(mutation => {
+                    if (mutation.attributeName === 'class') {
+                        if (selector.classList.contains("active")) { //we have to add the button every time that the statusbar of the series is displayed
+                            addButtons();  
+                        }
+                    }
+                })
+            }
+
+            const mutationObserver = new MutationObserver(callback);
+
+            mutationObserver.observe(selector, { attributes: true });
             setSubtitlesObserver();
           })
 
