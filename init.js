@@ -64,7 +64,7 @@ var activePopUp = null; //current popup that is being displayed
          
           onDomIsRendered(".watch-video--bottom-controls-container").then(function(){
             addButtons();
-        })
+            });
           
           onDomIsRendered(".ltr-omkt8s").then(function(){
             console.log('Player is ready');
