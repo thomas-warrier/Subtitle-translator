@@ -37,33 +37,41 @@ var activePopUp = null; //current popup that is being displayed
                 btn.addEventListener('mouseleave', () => {
                     deletePopUpWithDelay();
                 })
-                waitForElm(".ltr-1jnlk6v").then((elm) => {
+                
                     document.querySelectorAll(".ltr-1jnlk6v")[6].prepend(btn); //the query selector select the div where all of the right bottom button are
                     //the prepend add the button before the childs 
-                });
             }
 
         }
 
-        waitForElm(".ltr-omkt8s").then((elm) => { //we wait till the player is created
+        
+        function onDomIsRendered(domString) {
+            return new Promise(function(resolve, reject) {
+              function waitUntil() {
+                setTimeout(function() {
+                  if($(domString).length > 0){
+                    resolve($(domString));
+                  }else {
+                    waitUntil();
+                  }
+                }, 100);
+              }
+              //start the loop
+              waitUntil();
+            });
+          };
+
+         
+          onDomIsRendered(".watch-video--bottom-controls-container").then(function(){
+            addButtons();
+        })
+          
+          onDomIsRendered(".ltr-omkt8s").then(function(){
             console.log('Player is ready');
-            addButtons() //then we can add the button to the canva
-            var selector = document.querySelector(".ltr-omkt8s")
-            function callback(mutationsList) {
-                mutationsList.forEach(mutation => {
-                    if (mutation.attributeName === 'class') {
-                        if (selector.classList.contains("active")) { //we have to add the button every time that the statusbar of the series is displayed
-                            addButtons();  
-                        }
-                    }
-                })
-            }
-
-            const mutationObserver = new MutationObserver(callback);
-
-            mutationObserver.observe(selector, { attributes: true });
             setSubtitlesObserver();
-        });
+          })
+
+        
 
         
 
