@@ -97,16 +97,16 @@ var activePopUp = null; //current popup that is being displayed
                 
                 const video = document.querySelector("video");
                 
-                if (!video.paused ) {
+                if (!video.paused ) { //the video is not on pause and the pop up is not visible
                     video.pause();
                     popUpState = true;
                     createPopUp();
                     setTimeBarInvisible(true);
-                } else if(video.paused && !popUpState) {
+                } else if(video.paused && !popUpState) { //the video is paused and the pop up is not visible
                     popUpState = true;
                     createPopUp();
                     setTimeBarInvisible(true);
-                }else{
+                }else{ //the pop up is visible
                     video.play();
                     popUpState = false;
                     removeActivePopUp();
