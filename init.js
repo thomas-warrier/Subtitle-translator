@@ -94,15 +94,23 @@ var activePopUp = null; //current popup that is being displayed
             const keyName = e.key; //return a string of the name of the key pressed
             if (keyName === keyShortCut) { //if its the right key pressed
                 console.log("good key");
-                const canva = document.querySelector('.ltr-omkt8s');
-                canva.click();
-                if (!popUpState) {
+                
+                const video = document.querySelector("video");
+                
+                if (!video.paused ) { //the video is not on pause and the pop up is not visible
+                    video.pause();
                     popUpState = true;
                     createPopUp();
                     setTimeBarInvisible(true);
-                } else {
+                } else if(video.paused && !popUpState) { //the video is paused and the pop up is not visible
+                    popUpState = true;
+                    createPopUp();
+                    setTimeBarInvisible(true);
+                }else if (video.paused && popUpState){ //the pop up is visible
+                    
                     popUpState = false;
                     removeActivePopUp();
+                    video.play();
                     setTimeBarInvisible(false);
                 }
             }

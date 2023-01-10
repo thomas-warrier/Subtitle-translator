@@ -1,6 +1,6 @@
 /*============ Pop up settings look ============*/
 #PopUpSetting{
-    min-width: 400px;
+    min-width: 450px;
     max-width: 400px;
     height: fit-content;
 }
@@ -38,14 +38,14 @@
         .choice-option{
             background-color: var(--primary-color);
             border-radius: 5px;
-            width: 15rem;
+            width: 22rem;
             font-weight: normal;
             font-size: 19px;
         }
 
         /*============ shortcut input look ============*/
         #shortcut-choice{
-            width: 15rem;
+            width: 22rem;
         }
 
         #shortcut-choice:focus{
