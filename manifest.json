@@ -1,6 +1,6 @@
 {
     "name": "Subtitle translator for Netflix",
-    "version": "0.0.3",
+    "version": "1.0.0",
     "manifest_version": 2,
     "description": "description of extension",
     "content_scripts": [
