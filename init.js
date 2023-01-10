@@ -107,9 +107,10 @@ var activePopUp = null; //current popup that is being displayed
                     createPopUp();
                     setTimeBarInvisible(true);
                 }else if (video.paused && popUpState){ //the pop up is visible
-                    video.play();
+                    
                     popUpState = false;
                     removeActivePopUp();
+                    video.play();
                     setTimeBarInvisible(false);
                 }
             }
