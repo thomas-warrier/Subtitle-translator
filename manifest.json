@@ -1,8 +1,8 @@
 {
     "name": "Subtitle Translator Netflix",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "manifest_version": 3,
-    "description": "description of extension",
+    "description": "This extension aims to facilitate the learning of a language with movies and series.",
     "content_scripts": [
         {
             "js": [
@@ -29,9 +29,6 @@
                 "*://www.netflix.com/browse"
             ]
         }
-    ],
-    "permissions":[
-        "storage"
     ]
     
 }
