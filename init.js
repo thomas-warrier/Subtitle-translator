@@ -38,7 +38,7 @@ var activePopUp = null; //current popup that is being displayed
                     deletePopUpWithDelay();
                 })
                 
-                    document.querySelectorAll(".ltr-1jnlk6v")[6].prepend(btn); //the query selector select the div where all of the right bottom button are
+                    document.querySelectorAll("ltr-gpipej")[6].prepend(btn); //the query selector select the div where all of the right bottom button are
                     //the prepend add the button before the childs 
             }
 
